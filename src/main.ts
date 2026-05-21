@@ -1,60 +1,62 @@
 import './style.css'
-import typescriptLogo from './assets/typescript.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import { setupCounter } from './counter.ts'
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-<section id="center">
-  <div class="hero">
-    <img src="${heroImg}" class="base" width="170" height="179">
-    <img src="${typescriptLogo}" class="framework" alt="TypeScript logo"/>
-    <img src="${viteLogo}" class="vite" alt="Vite logo" />
-  </div>
-  <div>
-    <h1>Get started</h1>
-    <p>Edit <code>src/main.ts</code> and save to test <code>HMR</code></p>
-  </div>
-  <button id="counter" type="button" class="counter"></button>
-</section>
+// Starfield
+const canvas = document.getElementById('starfield') as HTMLCanvasElement
+const ctx = canvas.getContext('2d')!
 
-<div class="ticks"></div>
+interface Star {
+  x: number
+  y: number
+  size: number
+  opacity: number
+  twinkleSpeed: number
+  twinkleOffset: number
+}
 
-<section id="next-steps">
-  <div id="docs">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#documentation-icon"></use></svg>
-    <h2>Documentation</h2>
-    <p>Your questions, answered</p>
-    <ul>
-      <li>
-        <a href="https://vite.dev/" target="_blank">
-          <img class="logo" src="${viteLogo}" alt="" />
-          Explore Vite
-        </a>
-      </li>
-      <li>
-        <a href="https://www.typescriptlang.org" target="_blank">
-          <img class="button-icon" src="${typescriptLogo}" alt="">
-          Learn more
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div id="social">
-    <svg class="icon" role="presentation" aria-hidden="true"><use href="/icons.svg#social-icon"></use></svg>
-    <h2>Connect with us</h2>
-    <p>Join the Vite community</p>
-    <ul>
-      <li><a href="https://github.com/vitejs/vite" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#github-icon"></use></svg>GitHub</a></li>
-      <li><a href="https://chat.vite.dev/" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#discord-icon"></use></svg>Discord</a></li>
-      <li><a href="https://x.com/vite_js" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#x-icon"></use></svg>X.com</a></li>
-      <li><a href="https://bsky.app/profile/vite.dev" target="_blank"><svg class="button-icon" role="presentation" aria-hidden="true"><use href="/icons.svg#bluesky-icon"></use></svg>Bluesky</a></li>
-    </ul>
-  </div>
-</section>
+let stars: Star[] = []
+let w = 0
+let h = 0
+let frame = 0
 
-<div class="ticks"></div>
-<section id="spacer"></section>
-`
+function resize() {
+  w = canvas.width = window.innerWidth
+  h = canvas.height = window.innerHeight
+}
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+function initStars() {
+  stars = Array.from({ length: 250 }, () => ({
+    x: Math.random() * w,
+    y: Math.random() * h,
+    size: Math.random() * 1.4 + 0.2,
+    opacity: Math.random() * 0.6 + 0.1,
+    twinkleSpeed: Math.random() * 0.02 + 0.005,
+    twinkleOffset: Math.random() * Math.PI * 2,
+  }))
+}
+
+function draw() {
+  ctx.clearRect(0, 0, w, h)
+  frame++
+
+  for (const s of stars) {
+    const twinkle = Math.sin(frame * s.twinkleSpeed + s.twinkleOffset) * 0.15
+    const alpha = Math.max(0, Math.min(1, s.opacity + twinkle))
+    ctx.beginPath()
+    ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2)
+    ctx.fillStyle = `rgba(200, 220, 255, ${alpha})`
+    ctx.fill()
+  }
+
+  requestAnimationFrame(draw)
+}
+
+resize()
+initStars()
+draw()
+window.addEventListener('resize', () => { resize(); initStars() })
+
+// Nav scroll effect
+const nav = document.getElementById('nav')!
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60)
+}, { passive: true })

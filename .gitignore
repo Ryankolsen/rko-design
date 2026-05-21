@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Netlify folder
+.netlify
+
+# Source images (copied to public/)
+davinci_*.png
