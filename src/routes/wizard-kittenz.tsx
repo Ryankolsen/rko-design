@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 import './wizard-kittenz.css'
 
 export const Route = createFileRoute('/wizard-kittenz')({
@@ -29,7 +29,7 @@ function WizardKittenzPage() {
           </a>
         </div>
         <footer className="wk-footer">
-          <a href="/wizard-kittenz/privacy">Privacy Policy</a>
+          <Link to="/wizard-kittenz/privacy">Privacy Policy</Link>
         </footer>
       </div>
     </div>

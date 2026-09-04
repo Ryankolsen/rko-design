@@ -99,3 +99,90 @@
 .wk-footer a:hover {
   text-decoration: underline;
 }
+
+.wk-privacy-page {
+  position: relative;
+  min-height: 100vh;
+  background: #0d0d1a;
+  color: #d4c8f0;
+  font-family: 'Georgia', serif;
+  padding: 8rem 1rem 4rem;
+  line-height: 1.75;
+  isolation: isolate;
+}
+
+.wk-privacy-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.wk-back {
+  display: inline-block;
+  color: #a78bfa;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.wk-back:hover {
+  text-decoration: underline;
+}
+
+.wk-privacy-page h1 {
+  font-family: 'Georgia', serif;
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: normal;
+  background: linear-gradient(135deg, #c084fc, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.5rem;
+}
+
+.wk-privacy-meta {
+  font-size: 0.85rem;
+  color: #6b5f8a;
+  margin-bottom: 2.5rem;
+}
+
+.wk-privacy-page p {
+  margin-bottom: 1rem;
+  color: #c4b5fd;
+}
+
+.wk-privacy-page ul {
+  margin: 0.5rem 0 1rem 1.4rem;
+  color: #c4b5fd;
+}
+
+.wk-privacy-page ul li {
+  margin-bottom: 0.35rem;
+}
+
+.wk-privacy-page a {
+  color: #a78bfa;
+}
+
+.wk-privacy-page a:hover {
+  text-decoration: underline;
+}
+
+.wk-privacy-page h2 {
+  font-size: 1.15rem;
+  color: #c084fc;
+  margin: 2rem 0 0.6rem;
+  border-bottom: 1px solid rgba(192, 132, 252, 0.2);
+  padding-bottom: 0.3rem;
+}
+
+.wk-contact-box {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.wk-contact-box p {
+  margin: 0;
+}
