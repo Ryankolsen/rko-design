@@ -1,10 +1,18 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
+import { useEffect } from 'react'
+import { createFileRoute, Link, useLocation } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
 function HomePage() {
+  const { hash } = useLocation()
+
+  useEffect(() => {
+    if (!hash) return
+    document.getElementById(hash)?.scrollIntoView()
+  }, [hash])
+
   return (
     <>
       <section id="hero">

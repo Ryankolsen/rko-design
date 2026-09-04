@@ -91,8 +91,9 @@ export function Layout({ children }: { children: ReactNode }) {
           <img src="/rko-logo.png" alt="RKO" />
         </Link>
         <ul>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#about">About</a></li>
+          <li><Link to="/" activeOptions={{ exact: true }}>Home</Link></li>
+          <li><Link to="/" hash="projects">Projects</Link></li>
+          <li><Link to="/" hash="about">About</Link></li>
           <li><Link to="/wizard-kittenz">Wizard Kittenz</Link></li>
         </ul>
       </nav>
