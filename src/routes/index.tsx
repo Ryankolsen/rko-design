@@ -1,4 +1,4 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -43,9 +43,9 @@ function HomePage() {
           </div>
 
           <div className="card">
-            <a className="card-img" href="https://wizard-kittenz.netlify.app/" target="_blank" rel="noopener noreferrer">
+            <Link className="card-img" to="/wizard-kittenz">
               <img src="/wizard-kittenz-card.png" alt="Wizard Kittenz" />
-            </a>
+            </Link>
             <div className="card-body">
               <span className="tag game">Game</span>
               <h3>Wizard Kittenz</h3>

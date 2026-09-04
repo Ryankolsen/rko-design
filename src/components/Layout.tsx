@@ -93,6 +93,7 @@ export function Layout({ children }: { children: ReactNode }) {
         <ul>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#about">About</a></li>
+          <li><Link to="/wizard-kittenz">Wizard Kittenz</Link></li>
         </ul>
       </nav>
 
