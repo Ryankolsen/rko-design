@@ -9,7 +9,16 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@tanstack/router-plugin": "^1.168.35",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
     "typescript": "~6.0.2",
-    "vite": "^8.0.12"
+    "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "^1.170.32",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
   }
 }
