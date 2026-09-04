@@ -318,6 +318,18 @@ section {
   box-shadow: 0 0 28px rgba(240, 168, 53, 0.45);
 }
 
+.store-btn.android {
+  background: var(--cyan);
+  color: var(--bg);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.store-btn.android:hover {
+  box-shadow: 0 0 28px rgba(77, 184, 255, 0.45);
+}
+
 .store-btn.android-soon {
   background: rgba(77, 184, 255, 0.07);
   color: var(--cyan);
