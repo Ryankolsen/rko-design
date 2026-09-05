@@ -6,7 +6,7 @@ export const Route = createFileRoute('/bourbon-dojo/')({
 })
 
 const IOS_STORE_URL = 'https://apps.apple.com/us/app/bourbon-dojo/id6762319810'
-const ANDROID_STORE_URL = '#'
+const ANDROID_STORE_URL = 'https://play.google.com/store/apps/details?id=com.ryankolsen.bourbondojo&hl=en_US'
 
 const features = [
   {
@@ -80,12 +80,12 @@ function AppleButton() {
 
 function GooglePlayButton() {
   return (
-    <a href={ANDROID_STORE_URL} className="bd-store-btn bd-store-btn--soon" aria-label="Coming soon on Google Play">
+    <a href={ANDROID_STORE_URL} className="bd-store-btn" aria-label="Get it on Google Play" target="_blank" rel="noopener noreferrer">
       <svg className="bd-store-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M3.18 23.76c.37.21.8.22 1.2.04L16.54 12 12.36 7.82 3.18 23.76zM20.9 10.53L17.95 8.8l-3.79 3.2 3.79 3.2 2.97-1.74c.85-.5.85-1.44-.02-1.93zM2.01 1.46C1.99 1.63 2 1.8 2 1.98v20.04c0 .18.01.35.03.52l10.33-10.54L2.01 1.46zM13.18 12.7l3.18-3.18-10.34-5.97c-.4-.23-.82-.25-1.2-.08L13.18 12.7z" />
       </svg>
       <span className="bd-store-btn-text">
-        <span className="bd-store-btn-sub">Coming soon on</span>
+        <span className="bd-store-btn-sub">Get it on</span>
         <span className="bd-store-btn-main">Google Play</span>
       </span>
     </a>
