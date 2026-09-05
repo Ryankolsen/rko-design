@@ -94,6 +94,7 @@ export function Layout({ children }: { children: ReactNode }) {
           <li><Link to="/" activeOptions={{ exact: true }}>Home</Link></li>
           <li><Link to="/" hash="projects">Projects</Link></li>
           <li><Link to="/" hash="about">About</Link></li>
+          <li><Link to="/bourbon-dojo">Bourbon Dojo</Link></li>
           <li><Link to="/wizard-kittenz">Wizard Kittenz</Link></li>
         </ul>
       </nav>

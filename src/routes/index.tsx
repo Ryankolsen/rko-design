@@ -30,9 +30,9 @@ function HomePage() {
         <div className="projects-grid">
 
           <div className="card">
-            <a className="card-img" href="https://bourbondojo.netlify.app/" target="_blank" rel="noopener noreferrer">
+            <Link className="card-img" to="/bourbon-dojo">
               <img src="/bourbon-card.png" alt="BourbonVault" />
-            </a>
+            </Link>
             <div className="card-body">
               <span className="tag">iOS App</span>
               <h3>Bourbon Dojo</h3>
