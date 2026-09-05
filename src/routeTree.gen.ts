@@ -10,19 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as WizardKittenzRouteImport } from './routes/wizard-kittenz'
 import { Route as BourbonDojoIndexRouteImport } from './routes/bourbon-dojo/index'
 import { Route as BourbonDojoPrivacyRouteImport } from './routes/bourbon-dojo/privacy'
-import { Route as WizardKittenzPrivacyRouteImport } from './routes/wizard-kittenz.privacy'
+import { Route as WizardKittenzIndexRouteImport } from './routes/wizard-kittenz/index'
+import { Route as WizardKittenzPrivacyRouteImport } from './routes/wizard-kittenz/privacy'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const WizardKittenzRoute = WizardKittenzRouteImport.update({
-  id: '/wizard-kittenz',
-  path: '/wizard-kittenz',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BourbonDojoIndexRoute = BourbonDojoIndexRouteImport.update({
@@ -35,63 +30,69 @@ const BourbonDojoPrivacyRoute = BourbonDojoPrivacyRouteImport.update({
   path: '/bourbon-dojo/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WizardKittenzIndexRoute = WizardKittenzIndexRouteImport.update({
+  id: '/wizard-kittenz/',
+  path: '/wizard-kittenz/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WizardKittenzPrivacyRoute = WizardKittenzPrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
-  getParentRoute: () => WizardKittenzRoute,
+  id: '/wizard-kittenz/privacy',
+  path: '/wizard-kittenz/privacy',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/wizard-kittenz': typeof WizardKittenzRouteWithChildren
   '/bourbon-dojo/privacy': typeof BourbonDojoPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo/': typeof BourbonDojoIndexRoute
+  '/wizard-kittenz/': typeof WizardKittenzIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/wizard-kittenz': typeof WizardKittenzRouteWithChildren
   '/bourbon-dojo/privacy': typeof BourbonDojoPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo': typeof BourbonDojoIndexRoute
+  '/wizard-kittenz': typeof WizardKittenzIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/wizard-kittenz': typeof WizardKittenzRouteWithChildren
   '/bourbon-dojo/privacy': typeof BourbonDojoPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo/': typeof BourbonDojoIndexRoute
+  '/wizard-kittenz/': typeof WizardKittenzIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/wizard-kittenz'
     | '/bourbon-dojo/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo/'
+    | '/wizard-kittenz/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/wizard-kittenz'
     | '/bourbon-dojo/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo'
+    | '/wizard-kittenz'
   id:
     | '__root__'
     | '/'
-    | '/wizard-kittenz'
     | '/bourbon-dojo/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo/'
+    | '/wizard-kittenz/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  WizardKittenzRoute: typeof WizardKittenzRouteWithChildren
   BourbonDojoPrivacyRoute: typeof BourbonDojoPrivacyRoute
+  WizardKittenzPrivacyRoute: typeof WizardKittenzPrivacyRoute
   BourbonDojoIndexRoute: typeof BourbonDojoIndexRoute
+  WizardKittenzIndexRoute: typeof WizardKittenzIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -101,13 +102,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/wizard-kittenz': {
-      id: '/wizard-kittenz'
-      path: '/wizard-kittenz'
-      fullPath: '/wizard-kittenz'
-      preLoaderRoute: typeof WizardKittenzRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/bourbon-dojo/': {
@@ -124,33 +118,29 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BourbonDojoPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/wizard-kittenz/': {
+      id: '/wizard-kittenz/'
+      path: '/wizard-kittenz'
+      fullPath: '/wizard-kittenz/'
+      preLoaderRoute: typeof WizardKittenzIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/wizard-kittenz/privacy': {
       id: '/wizard-kittenz/privacy'
-      path: '/privacy'
+      path: '/wizard-kittenz/privacy'
       fullPath: '/wizard-kittenz/privacy'
       preLoaderRoute: typeof WizardKittenzPrivacyRouteImport
-      parentRoute: typeof WizardKittenzRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface WizardKittenzRouteChildren {
-  WizardKittenzPrivacyRoute: typeof WizardKittenzPrivacyRoute
-}
-
-const WizardKittenzRouteChildren: WizardKittenzRouteChildren = {
-  WizardKittenzPrivacyRoute: WizardKittenzPrivacyRoute,
-}
-
-const WizardKittenzRouteWithChildren = WizardKittenzRoute._addFileChildren(
-  WizardKittenzRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  WizardKittenzRoute: WizardKittenzRouteWithChildren,
   BourbonDojoPrivacyRoute: BourbonDojoPrivacyRoute,
+  WizardKittenzPrivacyRoute: WizardKittenzPrivacyRoute,
   BourbonDojoIndexRoute: BourbonDojoIndexRoute,
+  WizardKittenzIndexRoute: WizardKittenzIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

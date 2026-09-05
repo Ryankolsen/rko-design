@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import './wizard-kittenz.css'
 
-export const Route = createFileRoute('/wizard-kittenz')({
+export const Route = createFileRoute('/wizard-kittenz/')({
   component: WizardKittenzPage,
 })
 
