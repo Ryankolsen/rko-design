@@ -87,11 +87,17 @@ function HomePage() {
               <span className="pill">Brandon Sanderson</span>
               <span className="pill">Star Wars</span>
               <span className="pill">Dragon Ball Z</span>
+              <span className="pill">Dungeon Crawler Carl</span>
+              <span className="pill">Marvel</span>
               <span className="pill">Family</span>
               <span className="pill">Godot</span>
               <span className="pill">React Native</span>
               <span className="pill">Bourbon</span>
               <span className="pill">Design</span>
+              <span className="pill">Miami Dolphins</span>
+              <span className="pill">WWE</span>
+              <span className="pill">Inclusivity</span>
+              <span className="pill">Express Yourself</span>
             </div>
           </div>
         </div>
