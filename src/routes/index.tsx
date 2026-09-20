@@ -34,7 +34,14 @@ function HomePage() {
               <img src="/bourbon-card.png" alt="BourbonVault" />
             </Link>
             <div className="card-body">
-              <span className="tag">iOS App</span>
+              <div className="tags">
+                <span className="tag">Collection Tracker</span>
+                <span className="tag">Belt Progression</span>
+                <span className="tag">iOS &amp; Android</span>
+                <span className="tag">18+</span>
+                <span className="tag">Free</span>
+                <span className="tag">Available Now</span>
+              </div>
               <h3>Bourbon Dojo</h3>
               <p>Track, rate, and explore your bourbon collection. Level up through belts as you taste and discover. Built for the enthusiast who takes their pour seriously.</p>
               <div className="store-links">
@@ -55,7 +62,14 @@ function HomePage() {
               <img src="/wizard-kittenz-card.png" alt="Wizard Kittenz" />
             </Link>
             <div className="card-body">
-              <span className="tag game">Game</span>
+              <div className="tags">
+                <span className="tag game">Dungeon Crawler</span>
+                <span className="tag game">Multiplayer</span>
+                <span className="tag game">Achievements</span>
+                <span className="tag game">iOS &amp; Android</span>
+                <span className="tag game">18+</span>
+                <span className="tag game">Available Now</span>
+              </div>
               <h3>Wizard Kittenz</h3>
               <p>Cats. Magic. Chaos. A fantasy adventure game built with Godot where imagination runs wild and kittens rule the realm.</p>
               <div className="store-links">
