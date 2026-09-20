@@ -118,7 +118,7 @@ function HomePage() {
       </section>
 
       <footer>
-        <p>Built by <span className="gold">Ryan Kolsen</span> &nbsp;·&nbsp; RKO Design &nbsp;·&nbsp; 2025</p>
+        <p>Built by <span className="gold">Ryan K Olsen</span> &nbsp;·&nbsp; RKO Design &nbsp;·&nbsp; 2025</p>
       </footer>
     </>
   )
