@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BourbonDojoIndexRouteImport } from './routes/bourbon-dojo/index'
 import { Route as BourbonDojoPrivacyRouteImport } from './routes/bourbon-dojo/privacy'
+import { Route as PandaJumpPrivacyRouteImport } from './routes/panda-jump/privacy'
 import { Route as WizardKittenzIndexRouteImport } from './routes/wizard-kittenz/index'
 import { Route as WizardKittenzPrivacyRouteImport } from './routes/wizard-kittenz/privacy'
 
@@ -30,6 +31,11 @@ const BourbonDojoPrivacyRoute = BourbonDojoPrivacyRouteImport.update({
   path: '/bourbon-dojo/privacy',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PandaJumpPrivacyRoute = PandaJumpPrivacyRouteImport.update({
+  id: '/panda-jump/privacy',
+  path: '/panda-jump/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WizardKittenzIndexRoute = WizardKittenzIndexRouteImport.update({
   id: '/wizard-kittenz/',
   path: '/wizard-kittenz/',
@@ -44,6 +50,7 @@ const WizardKittenzPrivacyRoute = WizardKittenzPrivacyRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/bourbon-dojo/privacy': typeof BourbonDojoPrivacyRoute
+  '/panda-jump/privacy': typeof PandaJumpPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo/': typeof BourbonDojoIndexRoute
   '/wizard-kittenz/': typeof WizardKittenzIndexRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/bourbon-dojo/privacy': typeof BourbonDojoPrivacyRoute
+  '/panda-jump/privacy': typeof PandaJumpPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo': typeof BourbonDojoIndexRoute
   '/wizard-kittenz': typeof WizardKittenzIndexRoute
@@ -59,6 +67,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/bourbon-dojo/privacy': typeof BourbonDojoPrivacyRoute
+  '/panda-jump/privacy': typeof PandaJumpPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo/': typeof BourbonDojoIndexRoute
   '/wizard-kittenz/': typeof WizardKittenzIndexRoute
@@ -68,6 +77,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/bourbon-dojo/privacy'
+    | '/panda-jump/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo/'
     | '/wizard-kittenz/'
@@ -75,6 +85,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/bourbon-dojo/privacy'
+    | '/panda-jump/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo'
     | '/wizard-kittenz'
@@ -82,6 +93,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/bourbon-dojo/privacy'
+    | '/panda-jump/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo/'
     | '/wizard-kittenz/'
@@ -90,6 +102,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BourbonDojoPrivacyRoute: typeof BourbonDojoPrivacyRoute
+  PandaJumpPrivacyRoute: typeof PandaJumpPrivacyRoute
   WizardKittenzPrivacyRoute: typeof WizardKittenzPrivacyRoute
   BourbonDojoIndexRoute: typeof BourbonDojoIndexRoute
   WizardKittenzIndexRoute: typeof WizardKittenzIndexRoute
@@ -118,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BourbonDojoPrivacyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/panda-jump/privacy': {
+      id: '/panda-jump/privacy'
+      path: '/panda-jump/privacy'
+      fullPath: '/panda-jump/privacy'
+      preLoaderRoute: typeof PandaJumpPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/wizard-kittenz/': {
       id: '/wizard-kittenz/'
       path: '/wizard-kittenz'
@@ -138,6 +158,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BourbonDojoPrivacyRoute: BourbonDojoPrivacyRoute,
+  PandaJumpPrivacyRoute: PandaJumpPrivacyRoute,
   WizardKittenzPrivacyRoute: WizardKittenzPrivacyRoute,
   BourbonDojoIndexRoute: BourbonDojoIndexRoute,
   WizardKittenzIndexRoute: WizardKittenzIndexRoute,
