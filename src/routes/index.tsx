@@ -58,6 +58,17 @@ function HomePage() {
             ]}
           />
 
+          <ProjectCard
+            imageSrc="/panda-jump-card.png"
+            imageAlt="Panda Jump"
+            href="/panda-jump"
+            tagVariant="game"
+            tags={['Arcade Jumper', 'Endless Runner', 'Android', 'Coming Soon', 'Free']}
+            title="Panda Jump"
+            description="Leap over barrels and bounce through a hand-crafted bamboo forest in this endless arcade jumper. Simple to pick up, tricky to master — how high can your panda climb?"
+            storeLinks={[]}
+          />
+
         </div>
       </section>
 
