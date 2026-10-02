@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BourbonDojoIndexRouteImport } from './routes/bourbon-dojo/index'
 import { Route as BourbonDojoPrivacyRouteImport } from './routes/bourbon-dojo/privacy'
+import { Route as PandaJumpIndexRouteImport } from './routes/panda-jump/index'
 import { Route as PandaJumpPrivacyRouteImport } from './routes/panda-jump/privacy'
 import { Route as WizardKittenzIndexRouteImport } from './routes/wizard-kittenz/index'
 import { Route as WizardKittenzPrivacyRouteImport } from './routes/wizard-kittenz/privacy'
@@ -29,6 +30,11 @@ const BourbonDojoIndexRoute = BourbonDojoIndexRouteImport.update({
 const BourbonDojoPrivacyRoute = BourbonDojoPrivacyRouteImport.update({
   id: '/bourbon-dojo/privacy',
   path: '/bourbon-dojo/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PandaJumpIndexRoute = PandaJumpIndexRouteImport.update({
+  id: '/panda-jump/',
+  path: '/panda-jump/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PandaJumpPrivacyRoute = PandaJumpPrivacyRouteImport.update({
@@ -53,6 +59,7 @@ export interface FileRoutesByFullPath {
   '/panda-jump/privacy': typeof PandaJumpPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo/': typeof BourbonDojoIndexRoute
+  '/panda-jump/': typeof PandaJumpIndexRoute
   '/wizard-kittenz/': typeof WizardKittenzIndexRoute
 }
 export interface FileRoutesByTo {
@@ -61,6 +68,7 @@ export interface FileRoutesByTo {
   '/panda-jump/privacy': typeof PandaJumpPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo': typeof BourbonDojoIndexRoute
+  '/panda-jump': typeof PandaJumpIndexRoute
   '/wizard-kittenz': typeof WizardKittenzIndexRoute
 }
 export interface FileRoutesById {
@@ -70,6 +78,7 @@ export interface FileRoutesById {
   '/panda-jump/privacy': typeof PandaJumpPrivacyRoute
   '/wizard-kittenz/privacy': typeof WizardKittenzPrivacyRoute
   '/bourbon-dojo/': typeof BourbonDojoIndexRoute
+  '/panda-jump/': typeof PandaJumpIndexRoute
   '/wizard-kittenz/': typeof WizardKittenzIndexRoute
 }
 export interface FileRouteTypes {
@@ -80,6 +89,7 @@ export interface FileRouteTypes {
     | '/panda-jump/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo/'
+    | '/panda-jump/'
     | '/wizard-kittenz/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -88,6 +98,7 @@ export interface FileRouteTypes {
     | '/panda-jump/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo'
+    | '/panda-jump'
     | '/wizard-kittenz'
   id:
     | '__root__'
@@ -96,6 +107,7 @@ export interface FileRouteTypes {
     | '/panda-jump/privacy'
     | '/wizard-kittenz/privacy'
     | '/bourbon-dojo/'
+    | '/panda-jump/'
     | '/wizard-kittenz/'
   fileRoutesById: FileRoutesById
 }
@@ -105,6 +117,7 @@ export interface RootRouteChildren {
   PandaJumpPrivacyRoute: typeof PandaJumpPrivacyRoute
   WizardKittenzPrivacyRoute: typeof WizardKittenzPrivacyRoute
   BourbonDojoIndexRoute: typeof BourbonDojoIndexRoute
+  PandaJumpIndexRoute: typeof PandaJumpIndexRoute
   WizardKittenzIndexRoute: typeof WizardKittenzIndexRoute
 }
 
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/bourbon-dojo/privacy'
       fullPath: '/bourbon-dojo/privacy'
       preLoaderRoute: typeof BourbonDojoPrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/panda-jump/': {
+      id: '/panda-jump/'
+      path: '/panda-jump'
+      fullPath: '/panda-jump/'
+      preLoaderRoute: typeof PandaJumpIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/panda-jump/privacy': {
@@ -161,6 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   PandaJumpPrivacyRoute: PandaJumpPrivacyRoute,
   WizardKittenzPrivacyRoute: WizardKittenzPrivacyRoute,
   BourbonDojoIndexRoute: BourbonDojoIndexRoute,
+  PandaJumpIndexRoute: PandaJumpIndexRoute,
   WizardKittenzIndexRoute: WizardKittenzIndexRoute,
 }
 export const routeTree = rootRouteImport

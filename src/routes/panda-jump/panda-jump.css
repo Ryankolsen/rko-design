@@ -1,3 +1,80 @@
+.pj-page {
+  position: relative;
+  min-height: 100vh;
+  background: #f3faf0;
+  color: #2f3b2c;
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8rem 2rem 4rem;
+  isolation: isolate;
+}
+
+.pj-content {
+  position: relative;
+  z-index: 1;
+  max-width: 600px;
+}
+
+.pj-banner {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  margin-bottom: 1.75rem;
+  box-shadow: 0 0 30px rgba(63, 122, 52, 0.25);
+}
+
+.pj-page h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 6vw, 3.5rem);
+  font-weight: 700;
+  color: #d94f7a;
+  margin-bottom: 0.75rem;
+}
+
+.pj-tagline {
+  font-size: 1.1rem;
+  color: #3f7a34;
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.pj-description {
+  font-size: 1rem;
+  color: #2f3b2c;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.pj-store-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 3rem;
+}
+
+.pj-footer {
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  color: #6b7a66;
+  text-align: center;
+  padding: 0;
+  border-top: none;
+}
+
+.pj-footer a {
+  color: #3f7a34;
+  text-decoration: none;
+}
+
+.pj-footer a:hover {
+  text-decoration: underline;
+}
+
 .pj-privacy-page {
   position: relative;
   min-height: 100vh;
