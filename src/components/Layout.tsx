@@ -96,6 +96,7 @@ export function Layout({ children }: { children: ReactNode }) {
           <li><Link to="/" hash="about">About</Link></li>
           <li><Link to="/bourbon-dojo">Bourbon Dojo</Link></li>
           <li><Link to="/wizard-kittenz">Wizard Kittenz</Link></li>
+          <li><Link to="/panda-jump">Panda Jump</Link></li>
         </ul>
       </nav>
 
