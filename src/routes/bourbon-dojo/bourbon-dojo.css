@@ -1,5 +1,4 @@
-.bd-page,
-.bd-privacy-page {
+.bd-page {
   --bourbon-deepest: #110600;
   --bourbon-dark:    #1C0A00;
   --bourbon-mid:     #2D1400;
@@ -18,12 +17,11 @@
   min-height: 100dvh;
 }
 
-.bd-page h1, .bd-page h2, .bd-page h3,
-.bd-privacy-page h1, .bd-privacy-page h2, .bd-privacy-page h3 {
+.bd-page h1, .bd-page h2, .bd-page h3 {
   font-family: 'Playfair Display', Georgia, serif;
 }
 
-.bd-page a, .bd-privacy-page a {
+.bd-page a {
   color: inherit;
   text-decoration: none;
 }
@@ -313,69 +311,4 @@
   .bd-store-btn {
     min-width: 160px;
   }
-}
-
-/* ── Privacy page ── */
-
-.bd-privacy-page {
-  padding: 40px 24px 80px;
-  line-height: 1.6;
-}
-
-.bd-privacy-container {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.bd-back {
-  display: inline-block;
-  color: var(--amber);
-  text-decoration: none;
-  font-size: 0.9rem;
-  margin-bottom: 2rem;
-}
-
-.bd-back:hover {
-  text-decoration: underline;
-}
-
-.bd-privacy-page h1 {
-  font-size: 2rem;
-  margin-bottom: 4px;
-}
-
-.bd-privacy-meta {
-  color: var(--cream-faint);
-  font-size: 0.9rem;
-  margin-bottom: 32px;
-}
-
-.bd-privacy-page p,
-.bd-privacy-page li {
-  font-size: 1rem;
-  color: var(--cream-muted);
-}
-
-.bd-privacy-page ul {
-  padding-left: 20px;
-  margin: 0.5rem 0 1rem;
-}
-
-.bd-privacy-page p {
-  margin-bottom: 1rem;
-}
-
-.bd-privacy-page h2 {
-  font-size: 1.2rem;
-  margin-top: 36px;
-  margin-bottom: 0.6rem;
-  color: var(--amber-light);
-}
-
-.bd-privacy-page a {
-  color: var(--amber-light);
-}
-
-.bd-privacy-page a:hover {
-  text-decoration: underline;
 }
