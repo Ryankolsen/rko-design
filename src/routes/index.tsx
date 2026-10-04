@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { createFileRoute, useLocation } from '@tanstack/react-router'
 import { ProjectCard } from '../components/ProjectCard'
+import { projects } from '../data/projects'
 import { interests } from '../data/interests'
 
 export const Route = createFileRoute('/')({
@@ -31,44 +32,19 @@ function HomePage() {
         <h2 className="section-title">Projects</h2>
         <div className="projects-grid">
 
-          <ProjectCard
-            imageSrc="/bourbon-card.png"
-            imageAlt="BourbonVault"
-            href="/bourbon-dojo"
-            tagVariant="plain"
-            tags={['Collection Tracker', 'Belt Progression', 'iOS & Android', '18+', 'Free', 'Available Now']}
-            title="Bourbon Dojo"
-            description="Track, rate, and explore your bourbon collection. Level up through belts as you taste and discover. Built for the enthusiast who takes their pour seriously."
-            storeLinks={[
-              { platform: 'ios', url: 'https://apps.apple.com/us/app/bourbon-dojo/id6762319810' },
-              { platform: 'android', url: 'https://play.google.com/store/apps/details?id=com.ryankolsen.bourbondojo&hl=en_US' },
-            ]}
-          />
-
-          <ProjectCard
-            imageSrc="/wizard-kittenz-card.png"
-            imageAlt="Wizard Kittenz"
-            href="/wizard-kittenz"
-            tagVariant="game"
-            tags={['Dungeon Crawler', 'Multiplayer', 'Achievements', 'iOS & Android', '18+', 'Available Now']}
-            title="Wizard Kittenz"
-            description="Cats. Magic. Chaos. A fantasy adventure game built with Godot where imagination runs wild and kittens rule the realm."
-            storeLinks={[
-              { platform: 'ios', url: 'https://apps.apple.com/gb/app/wizard-kittenz/id6788580194' },
-              { platform: 'android', url: 'https://play.google.com/store/apps/details?id=com.wizardkittenz.game' },
-            ]}
-          />
-
-          <ProjectCard
-            imageSrc="/panda-jump-card.png"
-            imageAlt="Panda Jump"
-            href="/panda-jump"
-            tagVariant="game"
-            tags={['Arcade Jumper', 'Endless Runner', 'Android', 'Coming Soon', 'Free']}
-            title="Panda Jump"
-            description="Leap over barrels and bounce through a hand-crafted bamboo forest in this endless arcade jumper. Simple to pick up, tricky to master — how high can your panda climb?"
-            storeLinks={[]}
-          />
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.href}
+              imageSrc={project.imageSrc}
+              imageAlt={project.imageAlt}
+              href={project.href}
+              tagVariant={project.tagVariant}
+              tags={project.tags}
+              title={project.title}
+              description={project.description}
+              storeLinks={project.storeLinks}
+            />
+          ))}
 
         </div>
       </section>
