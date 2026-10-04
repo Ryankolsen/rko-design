@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
+import { projects } from '../data/projects'
 import '../style.css'
 
 interface Star {
@@ -94,9 +95,11 @@ export function Layout({ children }: { children: ReactNode }) {
           <li><Link to="/" activeOptions={{ exact: true }}>Home</Link></li>
           <li><Link to="/" hash="projects">Projects</Link></li>
           <li><Link to="/" hash="about">About</Link></li>
-          <li><Link to="/bourbon-dojo">Bourbon Dojo</Link></li>
-          <li><Link to="/wizard-kittenz">Wizard Kittenz</Link></li>
-          <li><Link to="/panda-jump">Panda Jump</Link></li>
+          {projects.map((project) => (
+            <li key={project.href}>
+              <Link to={project.href}>{project.navLabel}</Link>
+            </li>
+          ))}
         </ul>
       </nav>
 
