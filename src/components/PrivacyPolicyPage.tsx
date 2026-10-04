@@ -14,6 +14,7 @@ interface PrivacyPolicyPageProps {
   backLabel: string
   contactEmail: string
   sections: PrivacyPolicySection[]
+  intro?: ReactNode
 }
 
 export function PrivacyPolicyPage({
@@ -23,6 +24,7 @@ export function PrivacyPolicyPage({
   backLabel,
   contactEmail,
   sections,
+  intro,
 }: PrivacyPolicyPageProps) {
   return (
     <div className="privacy-page">
@@ -33,6 +35,8 @@ export function PrivacyPolicyPage({
 
         <h1>{appName}</h1>
         <p className="privacy-meta">{effectiveDate}</p>
+
+        {intro}
 
         {sections.map((section, index) => (
           <section className="privacy-section" key={index}>

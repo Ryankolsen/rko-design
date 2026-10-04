@@ -84,4 +84,40 @@ describe('PrivacyPolicyPage', () => {
     expect(headings).toHaveLength(1)
     expect(headings[0]).toHaveTextContent('1. Information We Collect')
   })
+
+  it('renders the intro slot before the first section heading when provided', async () => {
+    await renderWithRouter(
+      <PrivacyPolicyPage
+        appName="Test App"
+        effectiveDate="Effective: Jan 1, 2026"
+        backHref="/test-app"
+        backLabel="← Test App"
+        contactEmail="test@example.com"
+        intro={<p data-testid="intro">Intro text.</p>}
+        sections={[{ heading: 'Section One', body: 'Body one.' }]}
+      />,
+    )
+
+    const intro = screen.getByTestId('intro')
+    const firstHeading = screen.getAllByRole('heading', { level: 2 })[0]
+
+    expect(
+      intro.compareDocumentPosition(firstHeading) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+  })
+
+  it('renders no extra element when intro is omitted', async () => {
+    await renderWithRouter(
+      <PrivacyPolicyPage
+        appName="Test App"
+        effectiveDate="Effective: Jan 1, 2026"
+        backHref="/test-app"
+        backLabel="← Test App"
+        contactEmail="test@example.com"
+        sections={[{ heading: 'Section One', body: 'Body one.' }]}
+      />,
+    )
+
+    expect(screen.queryByTestId('intro')).not.toBeInTheDocument()
+  })
 })
