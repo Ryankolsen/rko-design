@@ -1,0 +1,17 @@
+export const interests = [
+  'Bourbon',
+  'Brandon Sanderson',
+  'Design',
+  'Dragon Ball Z',
+  'Drupal',
+  'Dungeon Crawler Carl',
+  'Express Yourself',
+  'Family',
+  'Godot',
+  'Inclusivity',
+  'Marvel',
+  'Miami Dolphins',
+  'React Native',
+  'Star Wars',
+  'WWE',
+]

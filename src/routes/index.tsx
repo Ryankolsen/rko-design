@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { createFileRoute, useLocation } from '@tanstack/react-router'
 import { ProjectCard } from '../components/ProjectCard'
+import { interests } from '../data/interests'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -80,22 +81,13 @@ function HomePage() {
           <div className="about-text">
             <h2 className="section-title left">About</h2>
             <p>I'm Ryan — a designer and builder living at the intersection of craft and imagination. I build apps that solve real problems and games that spark joy.</p>
-            <p>When I'm not coding, I'm probably deep in a Brandon Sanderson epic, losing my mind over a Star Wars moment, watching Dragon Ball Z with my family, or finding a new bourbon to add to the vault.</p>
+            <p>When I'm not coding, I'm probably deep in a Brandon Sanderson epic, losing my mind over the latest Dungeon Crawler Carl audiobook, watching the Super Mario Bros. movie with my family, or finding a new bourbon to add to the vault.</p>
             <div className="pills">
-              <span className="pill">Brandon Sanderson</span>
-              <span className="pill">Star Wars</span>
-              <span className="pill">Dragon Ball Z</span>
-              <span className="pill">Dungeon Crawler Carl</span>
-              <span className="pill">Marvel</span>
-              <span className="pill">Family</span>
-              <span className="pill">Godot</span>
-              <span className="pill">React Native</span>
-              <span className="pill">Bourbon</span>
-              <span className="pill">Design</span>
-              <span className="pill">Miami Dolphins</span>
-              <span className="pill">WWE</span>
-              <span className="pill">Inclusivity</span>
-              <span className="pill">Express Yourself</span>
+              {interests.map((interest) => (
+                <span key={interest} className="pill">
+                  {interest}
+                </span>
+              ))}
             </div>
           </div>
         </div>
