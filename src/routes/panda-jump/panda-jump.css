@@ -75,20 +75,6 @@
   text-decoration: underline;
 }
 
-.pj-privacy-page {
-  position: relative;
-  min-height: 100vh;
-  background: #f3faf0;
-  color: #2f3b2c;
-  font-family: 'Inter', sans-serif;
-  padding: 8rem 1rem 4rem;
-  line-height: 1.75;
-  isolation: isolate;
-}
-.pj-privacy-container {
-  max-width: 720px;
-  margin: 0 auto;
-}
 .pj-back {
   display: inline-block;
   color: #3f7a34;
@@ -98,48 +84,4 @@
 }
 .pj-back:hover {
   text-decoration: underline;
-}
-.pj-privacy-page h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 5vw, 2.5rem);
-  font-weight: 700;
-  color: #d94f7a;
-  margin-bottom: 0.5rem;
-}
-.pj-privacy-meta {
-  font-size: 0.85rem;
-  color: #6b7a66;
-  margin-bottom: 2.5rem;
-}
-.pj-privacy-page p {
-  margin-bottom: 1rem;
-}
-.pj-privacy-page ul {
-  margin: 0.5rem 0 1rem 1.4rem;
-}
-.pj-privacy-page ul li {
-  margin-bottom: 0.35rem;
-}
-.pj-privacy-page a {
-  color: #3f7a34;
-}
-.pj-privacy-page a:hover {
-  text-decoration: underline;
-}
-.pj-privacy-page h2 {
-  font-size: 1.15rem;
-  color: #3f7a34;
-  margin: 2rem 0 0.6rem;
-  border-bottom: 1px solid rgba(63, 122, 52, 0.25);
-  padding-bottom: 0.3rem;
-}
-.pj-contact-box {
-  background: rgba(217, 79, 122, 0.08);
-  border: 1px solid rgba(217, 79, 122, 0.3);
-  border-radius: 8px;
-  padding: 1.25rem 1.5rem;
-  margin-top: 2rem;
-}
-.pj-contact-box p {
-  margin: 0;
 }
