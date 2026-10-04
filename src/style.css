@@ -416,6 +416,84 @@ section {
   color: var(--gold);
 }
 
+/* PRIVACY POLICY PAGE */
+.privacy-page {
+  padding: 8rem 1.5rem 4rem;
+  line-height: 1.75;
+}
+
+.privacy-container {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.privacy-back {
+  display: inline-block;
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.privacy-back:hover {
+  text-decoration: underline;
+}
+
+.privacy-page h1 {
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.privacy-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 2rem;
+}
+
+.privacy-section {
+  margin-top: 2.25rem;
+}
+
+.privacy-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+  color: var(--gold);
+}
+
+.privacy-section-body p {
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.privacy-section-body ul {
+  padding-left: 1.25rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.privacy-section-body a {
+  color: var(--gold);
+}
+
+.privacy-section-body a:hover {
+  text-decoration: underline;
+}
+
+.privacy-contact {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.privacy-contact p {
+  margin: 0;
+}
+
+.privacy-contact a {
+  color: var(--gold);
+}
+
 /* FOOTER */
 footer {
   text-align: center;
