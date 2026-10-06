@@ -55,7 +55,7 @@ export const projects: Project[] = [
     tags: ['Arcade Jumper', 'Endless Runner', 'Android', 'Coming Soon', 'Free'],
     title: 'Panda Jump',
     description:
-      'Leap over barrels and bounce through a hand-crafted bamboo forest in this endless arcade jumper. Simple to pick up, tricky to master — how high can your panda climb?',
+      'Jump over an endless stream of barrels through an AI-crafted bamboo forest, made with my daughter — she helped design the game with AI and drew our panda. One tap, pure reflexes: how far can you go?',
     storeLinks: [],
   },
 ]

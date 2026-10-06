@@ -12,11 +12,15 @@ function PandaJumpPage() {
       <div className="pj-content">
         <img className="pj-banner" src="/panda-jump-card.png" alt="Panda Jump — a panda leaping between platforms" />
         <h1>Panda Jump</h1>
-        <p className="pj-tagline">Hop, bounce, and climb your way to the top.</p>
+        <p className="pj-tagline">One tap. Nonstop barrels. How far can you go?</p>
         <p className="pj-description">
-          A simple, pick-up-and-play jumper for Android. Guide a bamboo-loving
-          panda up an ever-rising stack of platforms, chain jumps for combos,
-          and see how high you can climb before gravity catches up.
+          A simple, pick-up-and-play side-scroller for Android. Tap to jump
+          your panda over an endless stream of barrels through an AI-crafted
+          bamboo forest and chase a new high score.
+        </p>
+        <p className="pj-description">
+          Built with my daughter — she co-designed the game with AI and drew
+          our panda. We polished it together from there.
         </p>
         <div className="pj-store-links store-links">
           <StoreBadge platform="android" disabled label="Coming Soon on Google Play" />
