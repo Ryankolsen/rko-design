@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react'
-import { Link } from '@tanstack/react-router'
+import { Link, useLocation } from '@tanstack/react-router'
 import { projects } from '../data/projects'
 import '../style.css'
 
@@ -12,7 +12,14 @@ interface Star {
   twinkleOffset: number
 }
 
+// Panda Jump is listed on Google Play for all ages, and Play holds the pages its
+// store listing links to under Families policy. Those pages must not link to the
+// 18+ projects, so they render without the site-wide project nav.
+const NAVLESS_PATH_PREFIXES = ['/panda-jump']
+
 export function Layout({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation()
+  const showNav = !NAVLESS_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix))
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const navRef = useRef<HTMLElement>(null)
 
@@ -75,33 +82,36 @@ export function Layout({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    const nav = navRef.current!
+    const nav = navRef.current
+    if (!nav) return
     const handleScroll = () => {
       nav.classList.toggle('scrolled', window.scrollY > 60)
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+  }, [showNav])
 
   return (
     <>
       <canvas id="starfield" ref={canvasRef} />
 
-      <nav id="nav" ref={navRef}>
-        <Link to="/" className="nav-logo">
-          <img src="/rko-logo.png" alt="RKO" />
-        </Link>
-        <ul>
-          <li><Link to="/" activeOptions={{ exact: true }}>Home</Link></li>
-          <li><Link to="/" hash="projects">Projects</Link></li>
-          <li><Link to="/" hash="about">About</Link></li>
-          {projects.map((project) => (
-            <li key={project.href}>
-              <Link to={project.href}>{project.navLabel}</Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      {showNav && (
+        <nav id="nav" ref={navRef}>
+          <Link to="/" className="nav-logo">
+            <img src="/rko-logo.png" alt="RKO" />
+          </Link>
+          <ul>
+            <li><Link to="/" activeOptions={{ exact: true }}>Home</Link></li>
+            <li><Link to="/" hash="projects">Projects</Link></li>
+            <li><Link to="/" hash="about">About</Link></li>
+            {projects.map((project) => (
+              <li key={project.href}>
+                <Link to={project.href}>{project.navLabel}</Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
 
       {children}
     </>

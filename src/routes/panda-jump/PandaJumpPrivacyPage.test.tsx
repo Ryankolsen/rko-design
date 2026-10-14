@@ -39,11 +39,11 @@ describe('PandaJumpPrivacyPage', () => {
     ).toBeInTheDocument()
   })
 
-  it('points the back-link at / (not /panda-jump)', async () => {
+  it('points the back-link at /panda-jump, not the portfolio home', async () => {
     await renderWithRouter(<PandaJumpPrivacyPage />)
 
-    const backLink = screen.getByRole('link', { name: '← RKO Design' })
-    expect(backLink).toHaveAttribute('href', '/')
+    const backLink = screen.getByRole('link', { name: '← Panda Jump' })
+    expect(backLink).toHaveAttribute('href', '/panda-jump')
   })
 
   it('renders the intro paragraph before the first numbered heading', async () => {

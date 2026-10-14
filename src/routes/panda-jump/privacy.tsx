@@ -11,8 +11,8 @@ function PandaJumpPrivacyPage() {
     <PrivacyPolicyPage
       appName="Privacy Policy"
       effectiveDate="Effective date: October 2, 2026 · App: Panda Jump · Package: com.ryankolsen.pandajump"
-      backHref="/"
-      backLabel="← RKO Design"
+      backHref="/panda-jump"
+      backLabel="← Panda Jump"
       contactEmail="rkolsen.design@gmail.com"
       intro={
         <p>
