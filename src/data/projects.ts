@@ -20,7 +20,7 @@ export const projects: Project[] = [
     href: '/bourbon-dojo',
     navLabel: 'Bourbon Dojo',
     imageSrc: '/bourbon-card.png',
-    imageAlt: 'BourbonVault',
+    imageAlt: 'Bourbon Dojo',
     tagVariant: 'plain',
     tags: ['Collection Tracker', 'Belt Progression', 'iOS & Android', '18+', 'Free', 'Available Now'],
     title: 'Bourbon Dojo',

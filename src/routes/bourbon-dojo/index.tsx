@@ -27,7 +27,7 @@ const features = [
       </svg>
     ),
     title: 'Tasting Notes',
-    body: 'Log detailed notes and a 0–100 score for every pour. Build a record you\'ll treasure.',
+    body: 'Rate every pour from 1 to 5 stars and log nose, palate and finish notes. Build a record you\'ll treasure.',
   },
   {
     icon: (
@@ -50,6 +50,15 @@ const features = [
     ),
     title: 'Groups & Sale Alerts',
     body: 'Create a crew, post sale finds, and never let your circle miss a great bottle.',
+  },
+  {
+    icon: (
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+      </svg>
+    ),
+    title: 'Friends & Feed',
+    body: 'Follow friends, see their latest tastings in your feed, and join in with likes and comments. Unlock 40 achievements along the way.',
   },
   {
     icon: (
@@ -92,7 +101,7 @@ function GooglePlayButton() {
   )
 }
 
-function BourbonDojoPage() {
+export function BourbonDojoPage() {
   return (
     <div className="bd-page">
       <header className="bd-hero">

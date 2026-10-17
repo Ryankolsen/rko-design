@@ -33,4 +33,9 @@ describe('projects', () => {
     const titles = projects.map((project) => project.title)
     expect(new Set(titles).size).toBe(titles.length)
   })
+
+  it('uses "Bourbon Dojo" as the Bourbon Dojo image alt text', () => {
+    const project = projects.find((p) => p.href === '/bourbon-dojo')
+    expect(project?.imageAlt).toBe('Bourbon Dojo')
+  })
 })
