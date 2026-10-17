@@ -9,7 +9,7 @@ export function BourbonDojoPrivacyPage() {
   return (
     <PrivacyPolicyPage
       appName="Bourbon Dojo Privacy Policy"
-      effectiveDate="Last updated: April 25, 2026"
+      effectiveDate="Last updated: October 17, 2026"
       backHref="/bourbon-dojo"
       backLabel="← Bourbon Dojo"
       contactEmail="rkolsen.design@gmail.com"
@@ -22,11 +22,15 @@ export function BourbonDojoPrivacyPage() {
               <ul>
                 <li>
                   <strong>Account information</strong> — your name and email address, provided when
-                  you sign in with Google or Apple.
+                  you sign in with Google, Apple, or email and password.
+                </li>
+                <li>
+                  <strong>Profile</strong> — your display name, username, and an optional avatar
+                  photo.
                 </li>
                 <li>
                   <strong>Collection and wishlist data</strong> — the bourbon bottles you add to your
-                  collection or wishlist.
+                  collection or wishlist, including purchase price, date, place, and notes.
                 </li>
                 <li>
                   <strong>Tasting notes</strong> — ratings, notes, and reviews you write about
@@ -37,9 +41,16 @@ export function BourbonDojoPrivacyPage() {
                   post or view within those groups.
                 </li>
                 <li>
-                  <strong>Push notification tokens</strong> — a device token used to send you push
-                  notifications (e.g., new sale alerts in your groups). You can disable notifications
-                  at any time in your device settings.
+                  <strong>Social activity</strong> — people you follow, and likes and comments you
+                  make.
+                </li>
+                <li>
+                  <strong>Game and progression data</strong> — XP, belts, streaks, achievements, and
+                  mini-game results.
+                </li>
+                <li>
+                  <strong>Suggested catalog edits</strong> — corrections or additions you suggest to
+                  the bourbon catalog.
                 </li>
                 <li>
                   <strong>Location-derived data</strong> — when using the sale alert feature, you may
@@ -56,12 +67,36 @@ export function BourbonDojoPrivacyPage() {
             <>
               <ul>
                 <li>To provide and operate the app (syncing your collection, tastings, and groups across devices).</li>
-                <li>To send push notifications about activity in your groups, if you have enabled them.</li>
-                <li>To authenticate your identity via Google or Apple sign-in.</li>
+                <li>To authenticate your identity via Google, Apple, or email and password sign-in.</li>
                 <li>To improve the app based on how it is used.</li>
               </ul>
               <p>We do not sell your personal information. We do not use your data for advertising.</p>
             </>
+          ),
+        },
+        {
+          heading: 'What Others Can See',
+          body: (
+            <ul>
+              <li>
+                <strong>Visible to other users</strong> — your profile (name, username, avatar),
+                tastings, collection, achievements, XP and belt, follows, likes, and comments.
+              </li>
+              <li>
+                <strong>Visible only to members</strong> — group content and sale alerts are visible
+                only to members of the group.
+              </li>
+              <li>
+                <strong>Private</strong> — your wishlist.
+              </li>
+              <li>
+                <strong>Anonymous</strong> — your Dojo Duel runs may be replayed to other players as
+                anonymous opponents. Your name is not shown; the app labels them only "Ghost".
+              </li>
+              <li>
+                <strong>Reviewed by admins</strong> — suggested catalog edits are reviewed by admins.
+              </li>
+            </ul>
           ),
         },
         {
@@ -91,7 +126,7 @@ export function BourbonDojoPrivacyPage() {
                 <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.
               </li>
               <li>
-                <strong>Supabase</strong> — database and authentication infrastructure. Subject to{' '}
+                <strong>Supabase</strong> — database, email/password authentication, and profile photo storage. Subject to{' '}
                 <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase's Privacy Policy</a>.
               </li>
               <li>
@@ -103,11 +138,19 @@ export function BourbonDojoPrivacyPage() {
         {
           heading: 'Data Retention and Deletion',
           body: (
-            <p>
-              Your data is retained as long as your account is active. To request deletion of your
-              account and all associated data, contact us at the email below. We will process
-              deletion requests within 30 days.
-            </p>
+            <>
+              <p>Your data is retained as long as your account is active.</p>
+              <p>
+                You can delete your account in the app under Profile → Delete Account. Your account
+                is scheduled for permanent deletion after a 30-day grace period. Signing back in
+                during that period cancels the deletion. After 30 days, all of your data is
+                permanently removed.
+              </p>
+              <p>
+                You can also request deletion of your account and all associated data by contacting
+                us at the email below.
+              </p>
+            </>
           ),
         },
         {
@@ -129,7 +172,6 @@ export function BourbonDojoPrivacyPage() {
                 <li>Access the personal data we hold about you.</li>
                 <li>Request correction of inaccurate data.</li>
                 <li>Request deletion of your data.</li>
-                <li>Opt out of push notifications at any time via device settings.</li>
               </ul>
             </>
           ),
