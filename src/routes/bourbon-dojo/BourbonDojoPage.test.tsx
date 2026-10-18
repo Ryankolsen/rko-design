@@ -32,4 +32,11 @@ describe('BourbonDojoPage', () => {
       'https://apps.apple.com/us/app/bourbon-dojo/id6762319810',
     )
   })
+
+  it('links Contact to the RKO Design email', async () => {
+    await render()
+    expect(screen.getByRole('link', { name: 'Contact' }).getAttribute('href')).toBe(
+      'mailto:rkolsen.design@gmail.com',
+    )
+  })
 })

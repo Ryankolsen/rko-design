@@ -150,7 +150,7 @@ export function BourbonDojoPage() {
         <nav className="bd-footer-links" aria-label="Footer links">
           <Link to="/bourbon-dojo/privacy">Privacy Policy</Link>
           <span className="bd-footer-sep" aria-hidden="true">·</span>
-          <a href="mailto:ryankolsen@gmail.com">Contact</a>
+          <a href="mailto:rkolsen.design@gmail.com">Contact</a>
         </nav>
         <p className="bd-footer-copy">&copy; {new Date().getFullYear()} Bourbon Dojo. All rights reserved.</p>
       </footer>
