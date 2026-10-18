@@ -19,9 +19,10 @@ describe('BourbonDojoPage', () => {
     expect(screen.getByText(/nose, palate/i)).toBeTruthy()
   })
 
-  it('mentions the social feed and 40 achievements', async () => {
+  it('mentions the social feed and achievements without a fixed count', async () => {
     await render()
-    expect(screen.getByText(/40 achievements/i)).toBeTruthy()
+    expect(screen.getByText(/dozens of achievements/i)).toBeTruthy()
+    expect(screen.queryByText(/\d+ achievements/i)).toBeNull()
     expect(screen.getAllByText(/follow|feed/i).length).toBeGreaterThan(0)
   })
 

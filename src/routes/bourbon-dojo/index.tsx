@@ -58,7 +58,7 @@ const features = [
       </svg>
     ),
     title: 'Friends & Feed',
-    body: 'Follow friends, see their latest tastings in your feed, and join in with likes and comments. Unlock 40 achievements along the way.',
+    body: 'Follow friends, see their latest tastings in your feed, and join in with likes and comments. Unlock dozens of achievements along the way.',
   },
   {
     icon: (
