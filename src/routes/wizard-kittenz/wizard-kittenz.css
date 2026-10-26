@@ -82,6 +82,37 @@
   margin-bottom: 3rem;
 }
 
+.wk-credit {
+  margin-top: -1rem;
+  text-align: center;
+}
+
+.wk-credit-heading {
+  font-family: Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: normal;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #a78bfa;
+  margin-bottom: 0.5rem;
+}
+
+.wk-credit-text {
+  font-size: 0.9rem;
+  color: #6b5f8a;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.wk-credit-text a {
+  color: #a78bfa;
+  text-decoration: none;
+}
+
+.wk-credit-text a:hover {
+  text-decoration: underline;
+}
+
 .wk-footer {
   margin-top: 3rem;
   font-size: 0.8rem;

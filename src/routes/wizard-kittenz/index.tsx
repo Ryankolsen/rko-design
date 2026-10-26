@@ -1,11 +1,13 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { projects } from '../../data/projects'
 import './wizard-kittenz.css'
 
 export const Route = createFileRoute('/wizard-kittenz/')({
   component: WizardKittenzPage,
 })
 
-function WizardKittenzPage() {
+export function WizardKittenzPage() {
+  const credit = projects.find((p) => p.href === '/wizard-kittenz')?.credit
   return (
     <div className="wk-page">
       <div className="wk-stars" />
@@ -28,6 +30,17 @@ function WizardKittenzPage() {
             Get it on Google Play
           </a>
         </div>
+        {credit && (
+          <section className="wk-credit">
+            <h2 className="wk-credit-heading">{credit.role}</h2>
+            <p className="wk-credit-text">
+              {credit.detailText} {credit.name} —{' '}
+              <a href={credit.url} target="_blank" rel="noopener noreferrer">
+                {credit.linkLabel}
+              </a>
+            </p>
+          </section>
+        )}
         <footer className="wk-footer">
           <Link to="/wizard-kittenz/privacy">Privacy Policy</Link>
         </footer>
