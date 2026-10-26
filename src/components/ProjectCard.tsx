@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { StoreBadge } from './StoreBadge'
+import type { ProjectCredit } from '../data/projects'
 
 interface StoreLink {
   platform: 'ios' | 'android'
@@ -15,6 +16,7 @@ interface ProjectCardProps {
   title: string
   description: string
   storeLinks: StoreLink[]
+  credit?: ProjectCredit
 }
 
 export function ProjectCard({
@@ -26,6 +28,7 @@ export function ProjectCard({
   title,
   description,
   storeLinks,
+  credit,
 }: ProjectCardProps) {
   const tagClassName = tagVariant === 'game' ? 'tag game' : 'tag'
 
@@ -44,6 +47,14 @@ export function ProjectCard({
         </div>
         <h3>{title}</h3>
         <p>{description}</p>
+        {credit && (
+          <p className="card-credit">
+            <span aria-hidden="true">♪</span> {credit.cardText} {credit.name} ·{' '}
+            <a href={credit.url} target="_blank" rel="noopener noreferrer">
+              {credit.linkLabel}
+            </a>
+          </p>
+        )}
         <div className="store-links">
           {storeLinks.map((storeLink) => (
             <StoreBadge key={storeLink.platform} platform={storeLink.platform} url={storeLink.url} />

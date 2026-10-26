@@ -43,6 +43,7 @@ function HomePage() {
               title={project.title}
               description={project.description}
               storeLinks={project.storeLinks}
+              credit={project.credit}
             />
           ))}
 

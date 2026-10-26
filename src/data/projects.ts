@@ -3,6 +3,15 @@ interface StoreLink {
   url: string
 }
 
+export interface ProjectCredit {
+  role: string
+  cardText: string
+  detailText: string
+  name: string
+  url: string
+  linkLabel: string
+}
+
 interface Project {
   href: string
   navLabel: string
@@ -13,6 +22,7 @@ interface Project {
   title: string
   description: string
   storeLinks: StoreLink[]
+  credit?: ProjectCredit
 }
 
 export const projects: Project[] = [
@@ -45,6 +55,14 @@ export const projects: Project[] = [
       { platform: 'ios', url: 'https://apps.apple.com/gb/app/wizard-kittenz/id6788580194' },
       { platform: 'android', url: 'https://play.google.com/store/apps/details?id=com.wizardkittenz.game' },
     ],
+    credit: {
+      role: 'Soundtrack',
+      cardText: 'Soundtrack custom produced without AI by',
+      detailText: 'Our soundtrack was custom produced without the use of AI by',
+      name: 'Elliot Priest',
+      url: 'https://early20digital.com',
+      linkLabel: 'Early20digital.com',
+    },
   },
   {
     href: '/panda-jump',

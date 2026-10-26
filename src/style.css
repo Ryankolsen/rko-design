@@ -291,6 +291,21 @@ section {
   margin-bottom: 1.75rem;
 }
 
+.card-body p.card-credit {
+  font-size: 0.8rem;
+  font-style: italic;
+  line-height: 1.5;
+  opacity: 0.8;
+  margin-top: -1rem;
+  margin-bottom: 1.25rem;
+  overflow-wrap: anywhere;
+}
+
+.card-credit a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 /* STORE LINKS */
 .store-links {
   display: flex;

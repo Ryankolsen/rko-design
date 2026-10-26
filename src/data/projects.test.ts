@@ -38,4 +38,24 @@ describe('projects', () => {
     const project = projects.find((p) => p.href === '/bourbon-dojo')
     expect(project?.imageAlt).toBe('Bourbon Dojo')
   })
+
+  it('sets the soundtrack credit on Wizard Kittenz', () => {
+    const project = projects.find((p) => p.href === '/wizard-kittenz')
+    expect(project?.credit?.name).toBe('Elliot Priest')
+    expect(project?.credit?.url).toBe('https://early20digital.com')
+    expect(project?.credit).toEqual({
+      role: 'Soundtrack',
+      name: 'Elliot Priest',
+      url: 'https://early20digital.com',
+      linkLabel: 'Early20digital.com',
+      cardText: 'Soundtrack custom produced without AI by',
+      detailText: 'Our soundtrack was custom produced without the use of AI by',
+    })
+  })
+
+  it('has no credit on Bourbon Dojo and Panda Jump', () => {
+    for (const href of ['/bourbon-dojo', '/panda-jump']) {
+      expect(projects.find((p) => p.href === href)?.credit).toBeUndefined()
+    }
+  })
 })
