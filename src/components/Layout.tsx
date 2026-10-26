@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 'react'
 import { Link, useLocation } from '@tanstack/react-router'
 import { projects } from '../data/projects'
 import '../style.css'
@@ -18,11 +18,15 @@ interface Star {
 const NAVLESS_PATH_PREFIXES = ['/panda-jump']
 
 export function Layout({ children }: { children: ReactNode }) {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const showNav = !NAVLESS_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix))
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const navRef = useRef<HTMLElement>(null)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname, hash])
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -92,6 +96,11 @@ export function Layout({ children }: { children: ReactNode }) {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [showNav])
 
+  // Delegated so a link to the current page (no location change) still closes the menu.
+  function handleLinkClick(event: MouseEvent<HTMLUListElement>) {
+    if ((event.target as Element).closest('a')) setMenuOpen(false)
+  }
+
   return (
     <>
       <canvas id="starfield" ref={canvasRef} />
@@ -111,7 +120,7 @@ export function Layout({ children }: { children: ReactNode }) {
           >
             <span className="nav-toggle-icon" aria-hidden="true" />
           </button>
-          <ul id="nav-links">
+          <ul id="nav-links" onClick={handleLinkClick}>
             <li><Link to="/" activeOptions={{ exact: true }}>Home</Link></li>
             <li><Link to="/" hash="projects">Projects</Link></li>
             <li><Link to="/" hash="about">About</Link></li>

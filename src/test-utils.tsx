@@ -11,18 +11,22 @@ interface RenderWithRouterOptions {
   initialPath?: string
 }
 
-export async function renderWithRouter(
-  ui: ReactNode,
-  { initialPath = '/' }: RenderWithRouterOptions = {},
-): Promise<RenderResult> {
+function createTestRouter(ui: ReactNode, initialPath: string) {
   const rootRoute = createRootRoute({
     component: () => <>{ui}</>,
   })
 
-  const router = createRouter({
+  return createRouter({
     routeTree: rootRoute,
     history: createMemoryHistory({ initialEntries: [initialPath] }),
   })
+}
+
+export async function renderWithRouter(
+  ui: ReactNode,
+  { initialPath = '/' }: RenderWithRouterOptions = {},
+): Promise<RenderResult & { router: ReturnType<typeof createTestRouter> }> {
+  const router = createTestRouter(ui, initialPath)
 
   await router.load()
 
@@ -31,5 +35,5 @@ export async function renderWithRouter(
     result = render(<RouterProvider router={router} />)
   })
 
-  return result
+  return Object.assign(result, { router })
 }

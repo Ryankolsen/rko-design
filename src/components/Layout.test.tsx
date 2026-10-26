@@ -1,4 +1,4 @@
-import { cleanup, fireEvent, screen } from '@testing-library/react'
+import { act, cleanup, fireEvent, screen } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { renderWithRouter } from '../test-utils'
 import { projects } from '../data/projects'
@@ -75,5 +75,52 @@ describe('Layout', () => {
         expect(screen.getAllByRole('link', { name })).toHaveLength(1)
       },
     )
+  })
+
+  describe('closing the mobile menu on navigation', () => {
+    async function renderOpen() {
+      const result = await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+      expect(screen.getByRole('button', { name: 'Close menu' })).toHaveAttribute('aria-expanded', 'true')
+      return result
+    }
+
+    function expectClosed() {
+      expect(screen.getByRole('button', { name: 'Open menu' })).toHaveAttribute('aria-expanded', 'false')
+    }
+
+    it.each(['Home', 'Projects', 'Bourbon Dojo'])('closes when the %s link is activated', async (name) => {
+      await renderOpen()
+
+      await act(async () => {
+        fireEvent.click(screen.getByRole('link', { name }))
+      })
+
+      expectClosed()
+    })
+
+    it('closes on a hash-only location change', async () => {
+      const { router } = await renderOpen()
+
+      await act(() => router.navigate({ to: '/', hash: 'about' }))
+
+      expectClosed()
+    })
+
+    it('closes on a pathname change', async () => {
+      const { router } = await renderOpen()
+
+      await act(() => router.navigate({ to: '/bourbon-dojo' }))
+
+      expectClosed()
+    })
+
+    it('stays closed when navigating while closed', async () => {
+      const { router } = await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+
+      await act(() => router.navigate({ to: '/', hash: 'about' }))
+
+      expectClosed()
+    })
   })
 })
