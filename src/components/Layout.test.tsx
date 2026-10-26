@@ -76,4 +76,86 @@ describe('Layout', () => {
       },
     )
   })
+
+  describe('mobile menu dismissal', () => {
+    async function renderOpen() {
+      await renderWithRouter(<Layout><p>outside</p></Layout>, { initialPath: '/' })
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+    }
+    const closedButton = () => screen.getByRole('button', { name: 'Open menu' })
+
+    it('closes on Escape and returns focus to the menu button', async () => {
+      await renderOpen()
+
+      fireEvent.keyDown(document, { key: 'Escape' })
+
+      expect(closedButton()).toHaveAttribute('aria-expanded', 'false')
+      expect(document.activeElement).toBe(closedButton())
+    })
+
+    it('ignores Escape while closed and leaves focus alone', async () => {
+      await renderWithRouter(<Layout><p>outside</p></Layout>, { initialPath: '/' })
+
+      fireEvent.keyDown(document, { key: 'Escape' })
+
+      expect(closedButton()).toHaveAttribute('aria-expanded', 'false')
+      expect(document.activeElement).not.toBe(closedButton())
+    })
+
+    it('ignores other keys while open', async () => {
+      await renderOpen()
+
+      fireEvent.keyDown(document, { key: 'Enter' })
+
+      expect(screen.getByRole('button', { name: 'Close menu' })).toBeInTheDocument()
+    })
+
+    it('closes on pointerdown outside the nav', async () => {
+      await renderOpen()
+
+      fireEvent.pointerDown(screen.getByText('outside'))
+
+      expect(closedButton()).toHaveAttribute('aria-expanded', 'false')
+    })
+
+    it('stays open on pointerdown inside the nav', async () => {
+      await renderOpen()
+
+      fireEvent.pointerDown(document.getElementById('nav-links')!)
+
+      expect(screen.getByRole('button', { name: 'Close menu' })).toBeInTheDocument()
+    })
+
+    it('closes exactly once when the button is pressed while open', async () => {
+      await renderOpen()
+      const button = screen.getByRole('button', { name: 'Close menu' })
+
+      fireEvent.pointerDown(button)
+      fireEvent.click(button)
+
+      expect(closedButton()).toHaveAttribute('aria-expanded', 'false')
+    })
+
+    it('removes document listeners on close and on unmount', async () => {
+      const add = vi.spyOn(document, 'addEventListener')
+      const remove = vi.spyOn(document, 'removeEventListener')
+      const ours = ['keydown', 'pointerdown']
+      const count = (spy: typeof add) => spy.mock.calls.filter(([t]) => ours.includes(t)).length
+
+      await renderWithRouter(<Layout><p>outside</p></Layout>, { initialPath: '/' })
+      expect(count(add)).toBe(0)
+
+      fireEvent.click(closedButton())
+      expect(count(add)).toBe(2)
+      expect(count(remove)).toBe(0)
+
+      fireEvent.click(screen.getByRole('button', { name: 'Close menu' }))
+      expect(count(remove)).toBe(2)
+
+      fireEvent.click(closedButton())
+      expect(count(add)).toBe(4)
+      cleanup()
+      expect(count(remove)).toBe(4)
+    })
+  })
 })

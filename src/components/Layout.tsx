@@ -22,7 +22,30 @@ export function Layout({ children }: { children: ReactNode }) {
   const showNav = !NAVLESS_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix))
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const navRef = useRef<HTMLElement>(null)
+  const toggleRef = useRef<HTMLButtonElement>(null)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key !== 'Escape') return
+      setMenuOpen(false)
+      toggleRef.current?.focus()
+    }
+
+    function onPointerDown(e: PointerEvent) {
+      if (navRef.current?.contains(e.target as Node)) return
+      setMenuOpen(false)
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [menuOpen])
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -102,6 +125,7 @@ export function Layout({ children }: { children: ReactNode }) {
             <img src="/rko-logo.png" alt="RKO" />
           </Link>
           <button
+            ref={toggleRef}
             type="button"
             className="nav-toggle"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
