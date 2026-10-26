@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode } from 'react'
+import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Link, useLocation } from '@tanstack/react-router'
 import { projects } from '../data/projects'
 import '../style.css'
@@ -22,6 +22,7 @@ export function Layout({ children }: { children: ReactNode }) {
   const showNav = !NAVLESS_PATH_PREFIXES.some((prefix) => pathname.startsWith(prefix))
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const navRef = useRef<HTMLElement>(null)
+  const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
   useEffect(() => {
     const canvas = canvasRef.current!
@@ -96,14 +97,25 @@ export function Layout({ children }: { children: ReactNode }) {
       <canvas id="starfield" ref={canvasRef} />
 
       {showNav && (
-        <nav id="nav" ref={navRef}>
+        <nav id="nav" ref={navRef} className={menuOpen ? 'menu-open' : undefined}>
           <Link to="/" className="nav-logo">
             <img src="/rko-logo.png" alt="RKO" />
           </Link>
-          <ul>
+          <button
+            type="button"
+            className="nav-toggle"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+            aria-controls="nav-links"
+            onClick={() => setMenuOpen((open) => !open)}
+          >
+            <span className="nav-toggle-icon" aria-hidden="true" />
+          </button>
+          <ul id="nav-links">
             <li><Link to="/" activeOptions={{ exact: true }}>Home</Link></li>
             <li><Link to="/" hash="projects">Projects</Link></li>
             <li><Link to="/" hash="about">About</Link></li>
+            <li className="nav-divider" aria-hidden="true" />
             {projects.map((project) => (
               <li key={project.href}>
                 <Link to={project.href}>{project.navLabel}</Link>

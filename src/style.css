@@ -45,7 +45,8 @@ body {
   border-bottom: 1px solid transparent;
 }
 
-#nav.scrolled {
+#nav.scrolled,
+#nav.menu-open {
   background: rgba(6, 8, 18, 0.78);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
@@ -80,6 +81,85 @@ body {
 }
 
 #nav a:hover { color: var(--gold); }
+
+.nav-toggle,
+.nav-divider {
+  display: none;
+}
+
+@media (max-width: 899.98px) {
+  #nav {
+    flex-wrap: wrap;
+  }
+
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: none;
+    border: 0;
+    color: var(--text-muted);
+    cursor: pointer;
+  }
+
+  .nav-toggle:hover { color: var(--gold); }
+
+  /* hamburger drawn with one bar plus two pseudo-element bars; becomes an X when open */
+  .nav-toggle-icon,
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 1px;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .nav-toggle-icon { position: relative; }
+
+  .nav-toggle-icon::before,
+  .nav-toggle-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+  }
+
+  .nav-toggle-icon::before { top: -7px; }
+  .nav-toggle-icon::after { top: 7px; }
+
+  #nav.menu-open .nav-toggle-icon { background: transparent; }
+  #nav.menu-open .nav-toggle-icon::before { top: 0; transform: rotate(45deg); }
+  #nav.menu-open .nav-toggle-icon::after { top: 0; transform: rotate(-45deg); }
+
+  #nav ul {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  #nav.menu-open ul { display: flex; }
+
+  #nav ul li { width: 100%; }
+
+  #nav ul a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    white-space: nowrap;
+  }
+
+  #nav ul .nav-divider {
+    display: block;
+    height: 1px;
+    margin: 0.4rem 0;
+    background: var(--card-border);
+  }
+}
 
 /* HERO */
 #hero {
