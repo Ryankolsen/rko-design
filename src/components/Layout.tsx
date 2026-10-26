@@ -24,6 +24,19 @@ export function Layout({ children }: { children: ReactNode }) {
   const navRef = useRef<HTMLElement>(null)
   const toggleRef = useRef<HTMLButtonElement>(null)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
+  const [scrolled, setScrolled] = useState<boolean>(() => window.scrollY > 60)
+
+  useEffect(() => {
+    if (!menuOpen) return
+
+    // Matches the nav CSS, which collapses the menu at max-width: 899.98px.
+    const mql = window.matchMedia('(min-width: 900px)')
+    function onChange(e: MediaQueryListEvent) {
+      if (e.matches) setMenuOpen(false)
+    }
+    mql.addEventListener('change', onChange)
+    return () => mql.removeEventListener('change', onChange)
+  }, [menuOpen])
 
   useEffect(() => {
     if (!menuOpen) return
@@ -110,26 +123,25 @@ export function Layout({ children }: { children: ReactNode }) {
   }, [])
 
   useEffect(() => {
-    const nav = navRef.current
-    if (!nav) return
-    const handleScroll = () => {
-      nav.classList.toggle('scrolled', window.scrollY > 60)
-    }
+    const handleScroll = () => setScrolled(window.scrollY > 60)
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
-  }, [showNav])
+  }, [])
 
   // Delegated so a link to the current page (no location change) still closes the menu.
   function handleLinkClick(event: MouseEvent<HTMLUListElement>) {
     if ((event.target as Element).closest('a')) setMenuOpen(false)
   }
 
+  const navClassName = [scrolled && 'scrolled', menuOpen && 'menu-open'].filter(Boolean).join(' ')
+
   return (
     <>
       <canvas id="starfield" ref={canvasRef} />
 
       {showNav && (
-        <nav id="nav" ref={navRef} className={menuOpen ? 'menu-open' : undefined}>
+        <nav id="nav" ref={navRef} className={navClassName || undefined}>
           <Link to="/" className="nav-logo">
             <img src="/rko-logo.png" alt="RKO" />
           </Link>

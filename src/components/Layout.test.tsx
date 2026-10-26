@@ -11,6 +11,13 @@ beforeEach(() => {
     arc: () => {},
     fill: () => {},
   } as unknown as CanvasRenderingContext2D)
+  // jsdom has no matchMedia; default to a no-op stub.
+  window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+    matches: false,
+    media: query,
+    addEventListener: () => {},
+    removeEventListener: () => {},
+  })) as unknown as typeof window.matchMedia
 })
 
 afterEach(() => {
@@ -203,6 +210,140 @@ describe('Layout', () => {
       await act(() => router.navigate({ to: '/', hash: 'about' }))
 
       expectClosed()
+    })
+  })
+
+  describe('scrolled state', () => {
+    const nav = () => screen.getByRole('navigation')
+    function scrollTo(y: number) {
+      Object.defineProperty(window, 'scrollY', { value: y, configurable: true, writable: true })
+      act(() => {
+        fireEvent.scroll(window)
+      })
+    }
+
+    beforeEach(() => {
+      Object.defineProperty(window, 'scrollY', { value: 0, configurable: true, writable: true })
+    })
+
+    it('keeps scrolled after opening and closing the menu', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+      scrollTo(100)
+      expect(nav()).toHaveClass('scrolled')
+
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+      expect(nav()).toHaveClass('scrolled', 'menu-open')
+
+      fireEvent.click(screen.getByRole('button', { name: 'Close menu' }))
+      expect(nav()).toHaveClass('scrolled')
+      expect(nav()).not.toHaveClass('menu-open')
+    })
+
+    it('keeps scrolled after closing with Escape', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+      scrollTo(100)
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+
+      fireEvent.keyDown(document, { key: 'Escape' })
+
+      expect(nav()).toHaveClass('scrolled')
+    })
+
+    it('is not scrolled at or below 60 after closing the menu', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+      scrollTo(60)
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+      fireEvent.click(screen.getByRole('button', { name: 'Close menu' }))
+
+      expect(nav()).not.toHaveClass('scrolled')
+    })
+
+    it('becomes scrolled just above 60 and clears when scrolling back', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+      scrollTo(61)
+      expect(nav()).toHaveClass('scrolled')
+      scrollTo(10)
+      expect(nav()).not.toHaveClass('scrolled')
+    })
+
+    it('initialises from the current scroll position on mount', async () => {
+      Object.defineProperty(window, 'scrollY', { value: 200, configurable: true, writable: true })
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+
+      expect(nav()).toHaveClass('scrolled')
+    })
+
+    it('uses a passive scroll listener and removes it on unmount', async () => {
+      const add = vi.spyOn(window, 'addEventListener')
+      const remove = vi.spyOn(window, 'removeEventListener')
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+
+      const added = add.mock.calls.find(([t]) => t === 'scroll')
+      expect(added?.[2]).toEqual({ passive: true })
+
+      cleanup()
+      expect(remove.mock.calls.some(([t, fn]) => t === 'scroll' && fn === added?.[1])).toBe(true)
+    })
+  })
+
+  describe('closing the mobile menu at desktop width', () => {
+    type Listener = (e: { matches: boolean }) => void
+    let listeners: Set<Listener>
+    let addSpy: ReturnType<typeof vi.fn>
+    let removeSpy: ReturnType<typeof vi.fn>
+
+    beforeEach(() => {
+      listeners = new Set()
+      addSpy = vi.fn((_t: string, fn: Listener) => listeners.add(fn))
+      removeSpy = vi.fn((_t: string, fn: Listener) => listeners.delete(fn))
+      window.matchMedia = vi.fn().mockImplementation((query: string) => ({
+        matches: false,
+        media: query,
+        addEventListener: addSpy,
+        removeEventListener: removeSpy,
+      })) as unknown as typeof window.matchMedia
+    })
+
+    const cross = (matches: boolean) =>
+      act(() => {
+        listeners.forEach((fn) => fn({ matches }))
+      })
+
+    it('closes when the viewport reaches 900px while open', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+      expect(window.matchMedia).toHaveBeenCalledWith('(min-width: 900px)')
+
+      cross(true)
+
+      expect(screen.getByRole('button', { name: 'Open menu' })).toHaveAttribute('aria-expanded', 'false')
+      expect(screen.getByRole('navigation')).not.toHaveClass('menu-open')
+    })
+
+    it('stays open when the query change reports it no longer matches', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+
+      cross(false)
+
+      expect(screen.getByRole('button', { name: 'Close menu' })).toBeInTheDocument()
+    })
+
+    it('removes the listener on close and on unmount', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+      expect(addSpy).not.toHaveBeenCalled()
+
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+      expect(addSpy).toHaveBeenCalledTimes(1)
+      expect(removeSpy).not.toHaveBeenCalled()
+
+      fireEvent.click(screen.getByRole('button', { name: 'Close menu' }))
+      expect(removeSpy).toHaveBeenCalledTimes(1)
+
+      fireEvent.click(screen.getByRole('button', { name: 'Open menu' }))
+      expect(addSpy).toHaveBeenCalledTimes(2)
+      cleanup()
+      expect(removeSpy).toHaveBeenCalledTimes(2)
     })
   })
 })
