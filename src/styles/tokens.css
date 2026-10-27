@@ -72,7 +72,7 @@
   }
 
   /* fadeUp elements start at opacity 0 and rely on the animation to show them. */
-  .hero-eyebrow, h1, .hero-sub, .btn-primary { opacity: 1 !important; }
+  .hero-eyebrow, #hero h1, .hero-sub, .btn-primary { opacity: 1 !important; }
 
   .card:hover,
   .card:hover .card-img img,

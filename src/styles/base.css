@@ -214,10 +214,13 @@ main:focus { outline: none; }
 
 h1 {
   font-family: 'Cinzel', serif;
-  font-size: clamp(4rem, 11vw, 9rem);
   font-weight: 900;
   line-height: 0.92;
   letter-spacing: -0.02em;
+}
+
+#hero h1 {
+  font-size: clamp(4rem, 11vw, 9rem);
   text-shadow: 0 0 80px rgba(240, 168, 53, 0.2);
   margin-bottom: 1.5rem;
   opacity: 0;
@@ -264,7 +267,7 @@ h1 {
 }
 
 /* SECTIONS */
-section {
+#hero, #projects, #about {
   padding: 7rem 2rem;
 }
 
@@ -627,8 +630,6 @@ section {
 
 .app-footer {
   margin-top: 3rem;
-  padding: 0;
-  border-top: none;
   font-size: 0.875rem;
   color: var(--color-text-muted);
 }
@@ -724,7 +725,7 @@ section {
 }
 
 /* FOOTER */
-footer {
+.site-footer {
   text-align: center;
   padding: 3rem 2rem;
   color: var(--text-muted);

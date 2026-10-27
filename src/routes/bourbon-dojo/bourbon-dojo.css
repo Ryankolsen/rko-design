@@ -88,6 +88,7 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.05;
+  margin-bottom: 1.5rem;
   /* Solid fallback where background-clip: text is unsupported. */
   color: var(--amber-light);
   background: linear-gradient(135deg, var(--amber-light) 0%, var(--cream) 60%);

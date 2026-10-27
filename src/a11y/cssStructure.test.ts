@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
 import wizardKittenzCss from '../routes/wizard-kittenz/wizard-kittenz.css?raw'
+import baseCss from '../styles/base.css?raw'
 
+const sheets = import.meta.glob<string>('../**/*.css', { query: '?raw', import: 'default', eager: true })
 const stripComments = (css: string) => css.replace(/\/\*[\s\S]*?\*\//g, '')
 
 describe('stylesheet layout', () => {
@@ -19,5 +21,18 @@ describe.each([
     for (const part of ['page', 'content', 'banner', 'tagline', 'description', 'store-links']) {
       expect(stripComments(css)).not.toMatch(new RegExp(String.raw`\.${prefix}-${part}\s*\{`))
     }
+  })
+})
+
+describe.each(Object.entries(sheets))('%s', (_, css) => {
+  it('has no top-level bare section or footer rule', () => {
+    expect(stripComments(css)).not.toMatch(/(^|\})\s*(section|footer)\s*\{/)
+  })
+})
+
+describe('global h1', () => {
+  it('leaves the hero fade-in and glow to the home hero', () => {
+    const rule = stripComments(baseCss).match(/(?:^|\})\s*h1\s*\{([^}]*)\}/)![1]
+    expect(rule).not.toMatch(/animation|text-shadow|opacity/)
   })
 })
