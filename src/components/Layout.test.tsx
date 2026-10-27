@@ -330,11 +330,13 @@ describe('Layout', () => {
       listeners = new Set()
       addSpy = vi.fn((_t: string, fn: Listener) => listeners.add(fn))
       removeSpy = vi.fn((_t: string, fn: Listener) => listeners.delete(fn))
+      // Only the menu's width query is spied on; the starfield's reduced-motion
+      // query gets inert listeners so it doesn't count here.
       window.matchMedia = vi.fn().mockImplementation((query: string) => ({
         matches: false,
         media: query,
-        addEventListener: addSpy,
-        removeEventListener: removeSpy,
+        addEventListener: query === '(min-width: 900px)' ? addSpy : () => {},
+        removeEventListener: query === '(min-width: 900px)' ? removeSpy : () => {},
       })) as unknown as typeof window.matchMedia
     })
 
