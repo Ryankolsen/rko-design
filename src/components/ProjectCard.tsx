@@ -1,4 +1,5 @@
 import { Link } from '@tanstack/react-router'
+import { ExternalLink } from './ExternalLink'
 import { StoreBadge } from './StoreBadge'
 import type { ProjectCredit } from '../data/projects'
 
@@ -50,9 +51,7 @@ export function ProjectCard({
         {credit && (
           <p className="card-credit">
             <span aria-hidden="true">♪</span> {credit.cardText} {credit.name} ·{' '}
-            <a href={credit.url} target="_blank" rel="noopener noreferrer">
-              {credit.linkLabel}
-            </a>
+            <ExternalLink href={credit.url}>{credit.linkLabel}</ExternalLink>
           </p>
         )}
         <div className="store-links">

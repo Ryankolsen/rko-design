@@ -13,10 +13,10 @@ function cardFor(href: string) {
 }
 
 describe('ProjectCard soundtrack credit', () => {
-  it('links to the composer site safely in a new tab', async () => {
+  it('links to the composer site safely in a new tab, and says so', async () => {
     await renderWithRouter(cardFor('/wizard-kittenz'))
 
-    const link = screen.getByRole('link', { name: 'Early20digital.com' })
+    const link = screen.getByRole('link', { name: /^Early20digital\.com \(opens in new tab\)$/ })
     expect(link).toHaveAttribute('href', 'https://early20digital.com')
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener noreferrer')
@@ -28,7 +28,8 @@ describe('ProjectCard soundtrack credit', () => {
     const credit = container.querySelector('.card-credit') as HTMLElement
     expect(credit).not.toBeNull()
     expect(credit.textContent).toBe(
-      '♪ Soundtrack custom produced without AI by Elliot Priest · Early20digital.com',
+      // The trailing suffix is visually hidden; it is there for screen readers.
+      '♪ Soundtrack custom produced without AI by Elliot Priest · Early20digital.com (opens in new tab)',
     )
     expect(screen.getByText('♪')).toHaveAttribute('aria-hidden', 'true')
   })
