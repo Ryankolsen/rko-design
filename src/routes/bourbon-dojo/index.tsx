@@ -77,7 +77,7 @@ const features = [
 
 export function BourbonDojoPage() {
   return (
-    <div className="bd-page">
+    <div className="bd-page theme-bd">
       <header className="bd-hero">
         <div className="bd-hero-glow" aria-hidden="true" />
 

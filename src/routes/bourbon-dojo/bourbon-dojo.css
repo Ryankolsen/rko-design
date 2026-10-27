@@ -1,24 +1,31 @@
-.bd-page {
-  --bourbon-deepest: #110600;
-  --bourbon-dark:    #1C0A00;
-  --bourbon-mid:     #2D1400;
-  --bourbon-card:    #3A1C08;
-  --amber:           #D4870A;
-  --amber-light:     #F0A830;
-  --amber-pale:      #F7D48A;
-  --cream:           #F0E6D3;
-  --cream-muted:     #C4A882;
-  --cream-faint:     #8B6A3E;
-  --divider:         rgba(212, 135, 10, 0.15);
-
-  /* Semantic tokens for shared components such as the store badge. */
-  --color-bg: var(--bourbon-dark);
-  --color-surface: var(--bourbon-card);
-  --color-text: var(--cream);
-  --color-text-muted: var(--cream-muted);
-  --color-accent: var(--amber);
+.theme-bd {
+  --color-bg: #1C0A00;
+  --color-surface: #3A1C08;
+  --color-border: rgb(var(--color-accent-rgb) / 0.15);
+  --color-text: #F0E6D3;
+  --color-text-muted: #C4A882;
+  /* Footer and small print, at AA (the old faint brown was 3.9:1). */
+  --color-text-faint: #A98652;
+  --color-accent: #D4870A;
   --color-accent-rgb: 212 135 10;
+  --color-link: var(--gold);
+  --color-on-accent: var(--color-bg);
+  --color-focus-ring: var(--gold);
 
+  /* Bourbon Dojo names for the tokens above, used by the bd-* rules. */
+  --bourbon-dark: var(--color-bg);
+  --bourbon-card: var(--color-surface);
+  --amber: var(--color-accent);
+  --amber-light: var(--gold);
+  --cream: var(--color-text);
+  --cream-muted: var(--color-text-muted);
+  --cream-faint: var(--color-text-faint);
+  --divider: var(--color-border);
+}
+
+.bd-page {
+  display: flex;
+  flex-direction: column;
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--bourbon-dark);
   color: var(--cream);
@@ -36,11 +43,6 @@
 
 /* ── Landing page ── */
 
-.bd-page {
-  display: flex;
-  flex-direction: column;
-}
-
 .bd-hero {
   position: relative;
   display: flex;
@@ -55,8 +57,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(212, 135, 10, 0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 50% 0%, rgba(240, 168, 48, 0.08) 0%, transparent 60%);
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgb(var(--color-accent-rgb) / 0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 0%, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -73,7 +75,7 @@
   height: 80px;
   border-radius: 18px;
   box-shadow:
-    0 0 0 1px rgba(212, 135, 10, 0.3),
+    0 0 0 1px rgb(var(--color-accent-rgb) / 0.3),
     0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
@@ -184,7 +186,7 @@
 .bd-feature-card:nth-child(5) { grid-column: 4 / 6; }
 
 .bd-feature-card:hover {
-  border-color: rgba(212, 135, 10, 0.4);
+  border-color: rgb(var(--color-accent-rgb) / 0.4);
   transform: translateY(-3px);
 }
 

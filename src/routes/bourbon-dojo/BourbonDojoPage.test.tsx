@@ -2,6 +2,7 @@ import { cleanup, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../../test-utils'
 import pageSource from './index.tsx?raw'
+import bourbonDojoCss from './bourbon-dojo.css?raw'
 import { BourbonDojoPage } from './index'
 
 afterEach(cleanup)
@@ -58,5 +59,20 @@ describe('BourbonDojoPage', () => {
     expect(screen.getByRole('link', { name: 'Contact' }).getAttribute('href')).toBe(
       'mailto:rkolsen.design@gmail.com',
     )
+  })
+})
+
+describe('BourbonDojoPage theme', () => {
+  it('wears the Bourbon Dojo theme', async () => {
+    const { container } = await render()
+    expect(container.querySelector('.bd-page')).toHaveClass('theme-bd')
+  })
+
+  it('drops the failing faint color, unused tokens and the duplicate page rule', () => {
+    expect(bourbonDojoCss).not.toMatch(/#8B6A3E/i)
+    expect(bourbonDojoCss).not.toMatch(/#F0A830/i)
+    expect(bourbonDojoCss).not.toContain('--bourbon-deepest')
+    expect(bourbonDojoCss).not.toContain('--bourbon-mid')
+    expect(bourbonDojoCss.match(/(^|\n)\.bd-page\s*\{/g)).toHaveLength(1)
   })
 })

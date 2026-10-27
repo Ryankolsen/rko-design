@@ -174,7 +174,7 @@ describe('StoreBadge two-line styles', () => {
   })
 
   it('has a border that stands out from the Bourbon Dojo page', () => {
-    const bd = resolveTheme([tokensCss, bourbonDojoCss], '.bd-page')
+    const bd = resolveTheme([tokensCss, bourbonDojoCss], '.theme-bd')
     const border = declarations(siteCss, '.store-btn.two-line')['border-color']
       .replace(/var\((--[\w-]+)\)/g, (_, name: string) => bd[name])
 
