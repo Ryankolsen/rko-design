@@ -373,6 +373,16 @@ section {
   letter-spacing: 0.01em;
 }
 
+.card-body h3 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card-body h3 a:hover,
+.card-body h3 a:focus-visible {
+  color: var(--color-accent);
+}
+
 .card-body p {
   color: var(--text-muted);
   font-size: 0.95rem;
@@ -384,7 +394,6 @@ section {
   font-size: 0.8rem;
   font-style: italic;
   line-height: 1.5;
-  opacity: 0.8;
   margin-top: -1rem;
   margin-bottom: 1.25rem;
   overflow-wrap: anywhere;

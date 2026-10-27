@@ -35,7 +35,8 @@ export function ProjectCard({
 
   return (
     <div className="card">
-      <Link className="card-img" to={href}>
+      {/* A mouse shortcut only; the title link is the card's one keyboard and screen-reader route. */}
+      <Link className="card-img" to={href} tabIndex={-1} aria-hidden="true">
         <img src={imageSrc} alt={imageAlt} />
       </Link>
       <div className="card-body">
@@ -46,7 +47,9 @@ export function ProjectCard({
             </span>
           ))}
         </div>
-        <h3>{title}</h3>
+        <h3>
+          <Link to={href}>{title}</Link>
+        </h3>
         <p>{description}</p>
         {credit && (
           <p className="card-credit">

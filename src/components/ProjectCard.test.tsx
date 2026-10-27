@@ -1,6 +1,7 @@
-import { cleanup, screen } from '@testing-library/react'
+import { cleanup, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../test-utils'
+import siteCss from '../style.css?raw'
 import { projects } from '../data/projects'
 import { ProjectCard } from './ProjectCard'
 
@@ -52,5 +53,50 @@ describe('ProjectCard soundtrack credit', () => {
       expect(container.querySelector('.card-credit')).toBeNull()
       cleanup()
     }
+  })
+})
+
+describe('ProjectCard links', () => {
+  const project = projects.find((p) => p.href === '/wizard-kittenz')!
+
+  it('makes the title heading the link to the project page', async () => {
+    await renderWithRouter(<ProjectCard {...project} />)
+
+    const heading = screen.getByRole('heading', { level: 3, name: project.title })
+    const link = within(heading).getByRole('link', { name: project.title })
+    expect(link).toHaveAttribute('href', project.href)
+  })
+
+  it('exposes exactly one link to the project page', async () => {
+    await renderWithRouter(<ProjectCard {...project} />)
+
+    const toProject = screen.getAllByRole('link').filter((a) => a.getAttribute('href') === project.href)
+    expect(toProject).toHaveLength(1)
+  })
+
+  it('keeps the image clickable but out of the tab order and accessibility tree', async () => {
+    const { container } = await renderWithRouter(<ProjectCard {...project} />)
+
+    const imageLink = container.querySelector('.card-img') as HTMLElement
+    expect(imageLink).toHaveAttribute('href', project.href)
+    expect(imageLink).toHaveAttribute('tabindex', '-1')
+    expect(imageLink).toHaveAttribute('aria-hidden', 'true')
+    expect(imageLink.querySelector('img')).toHaveAttribute('alt', project.imageAlt)
+  })
+
+  it('keeps the credit and store badges as their own links', async () => {
+    await renderWithRouter(<ProjectCard {...project} />)
+
+    expect(screen.getByRole('link', { name: /Early20digital\.com/ })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Download on iOS/ })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Get it on Google Play/ })).toBeInTheDocument()
+  })
+})
+
+describe('ProjectCard credit styles', () => {
+  it('does not fade the credit with opacity', () => {
+    const rule = siteCss.match(/\.card-credit\s*\{([^}]*)\}/)
+    expect(rule).not.toBeNull()
+    expect(rule![1]).not.toMatch(/opacity/)
   })
 })
