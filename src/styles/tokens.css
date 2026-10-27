@@ -1,28 +1,24 @@
-/* Design tokens. Semantic --color-* tokens are what new rules should use;
-   the legacy names above them are kept until the CSS consolidation removes them. */
+/* Design tokens. Rules use these semantic names; a theme class
+   (.theme-bd, .theme-pj, .theme-wk) overrides them for its pages. */
 :root {
-  --bg: #060812;
-  --gold: #f0a835;
-  --gold-dim: rgb(var(--color-accent-rgb) / 0.15);
-  --cyan: #4db8ff;
-  --purple: #9b5de5;
-  --text: #e8eaf0;
-  --text-muted: #7a849e;
-  --card-bg: rgba(255, 255, 255, 0.04);
-  --card-border: rgba(255, 255, 255, 0.08);
-  --radius: 16px;
-
-  --color-bg: var(--bg);
-  /* --card-bg as rendered on --bg; contrast needs an opaque surface. */
+  --color-bg: #060812;
+  /* --color-card as rendered on --color-bg; contrast needs an opaque surface. */
   --color-surface: #10121b;
-  --color-border: var(--card-border);
-  --color-text: var(--text);
-  --color-text-muted: var(--text-muted);
-  --color-accent: var(--gold);
+  /* Translucent, so the starfield shows through home cards and pills. */
+  --color-card: rgb(255 255 255 / 0.04);
+  --color-border: rgb(255 255 255 / 0.08);
+  --color-text: #e8eaf0;
+  --color-text-muted: #7a849e;
+  --color-accent: #f0a835;
   --color-accent-rgb: 240 168 53;
   --color-link: var(--color-accent);
-  --color-on-accent: var(--bg);
+  --color-on-accent: var(--color-bg);
   --color-focus-ring: var(--color-accent);
+
+  /* Store badges look the same on every page, whatever the theme. */
+  --color-ios: #f0a835;
+  --color-android: #4db8ff;
+  --color-on-badge: #060812;
 
   /* Channels for translucent tints: rgb(var(--x-rgb) / alpha). */
   --color-bg-rgb: 6 8 18;
@@ -34,7 +30,7 @@
   --color-tag-text: var(--color-accent);
   --color-tag-bg: rgb(var(--color-accent-rgb) / 0.15);
   --color-tag-border: rgb(var(--color-accent-rgb) / 0.28);
-  /* Lighter than --purple, which was 4.0:1 on its tint. */
+  /* Lighter than the raw purple #9b5de5, which was 4.0:1 on its tint. */
   --color-tag-game-text: #b48cf0;
   --color-tag-game-bg: rgb(var(--color-purple-rgb) / 0.12);
   --color-tag-game-border: rgb(var(--color-purple-rgb) / 0.28);

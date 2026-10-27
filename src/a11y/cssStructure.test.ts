@@ -33,6 +33,12 @@ describe.each(Object.entries(sheets))('%s', (_, css) => {
     expect(css.replace(/\s/g, '')).not.toContain('rgba(240,168,53')
   })
 
+  it('uses semantic tokens, not the legacy or Bourbon Dojo alias names', () => {
+    const legacy = 'bg|gold|gold-dim|cyan|purple|text|text-muted|card-bg|card-border|radius'
+    const aliases = 'bourbon-dark|bourbon-card|amber|amber-light|cream|cream-muted|cream-faint|divider'
+    expect(css).not.toMatch(new RegExp(String.raw`--(${legacy}|${aliases})(?![\w-])`))
+  })
+
   it('uses only the documented breakpoints', () => {
     const widths = [...css.matchAll(/\((?:max|min)-width:\s*([\d.]+)px\)/g)].map((m) => m[1])
     for (const width of widths) expect(['480', '680', '899.98', '900']).toContain(width)

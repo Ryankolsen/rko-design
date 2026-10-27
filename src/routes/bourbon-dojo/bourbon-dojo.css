@@ -8,27 +8,19 @@
   --color-text-faint: #A98652;
   --color-accent: #D4870A;
   --color-accent-rgb: 212 135 10;
-  --color-link: var(--gold);
+  /* The site gold: links, focus and the title gradient. */
+  --color-highlight: #f0a835;
+  --color-link: var(--color-highlight);
   --color-on-accent: var(--color-bg);
-  --color-focus-ring: var(--gold);
-
-  /* Bourbon Dojo names for the tokens above, used by the bd-* rules. */
-  --bourbon-dark: var(--color-bg);
-  --bourbon-card: var(--color-surface);
-  --amber: var(--color-accent);
-  --amber-light: var(--gold);
-  --cream: var(--color-text);
-  --cream-muted: var(--color-text-muted);
-  --cream-faint: var(--color-text-faint);
-  --divider: var(--color-border);
+  --color-focus-ring: var(--color-highlight);
 }
 
 .bd-page {
   display: flex;
   flex-direction: column;
   font-family: 'Inter', system-ui, sans-serif;
-  background-color: var(--bourbon-dark);
-  color: var(--cream);
+  background-color: var(--color-bg);
+  color: var(--color-text);
   min-height: 100dvh;
 }
 
@@ -58,7 +50,7 @@
   inset: 0;
   background:
     radial-gradient(ellipse 70% 50% at 50% 0%, rgb(var(--color-accent-rgb) / 0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 30% at 50% 0%, color-mix(in srgb, var(--gold) 8%, transparent) 0%, transparent 60%);
+    radial-gradient(ellipse 40% 30% at 50% 0%, color-mix(in srgb, var(--color-highlight) 8%, transparent) 0%, transparent 60%);
   pointer-events: none;
 }
 
@@ -90,8 +82,8 @@
   line-height: 1.05;
   margin-bottom: 1.5rem;
   /* Solid fallback where background-clip: text is unsupported. */
-  color: var(--amber-light);
-  background: linear-gradient(135deg, var(--amber-light) 0%, var(--cream) 60%);
+  color: var(--color-highlight);
+  background: linear-gradient(135deg, var(--color-highlight) 0%, var(--color-text) 60%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -109,7 +101,7 @@
 .bd-app-tagline {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-  color: var(--amber);
+  color: var(--color-accent);
   font-style: italic;
   margin-top: 4px;
   letter-spacing: 0.02em;
@@ -120,7 +112,7 @@
   max-width: 520px;
   font-size: clamp(1rem, 2.5vw, 1.15rem);
   line-height: 1.65;
-  color: var(--cream-muted);
+  color: var(--color-text-muted);
   margin-bottom: 40px;
 }
 
@@ -136,7 +128,7 @@
   position: relative;
   margin-top: 16px;
   font-size: var(--text-xs);
-  color: var(--cream-faint);
+  color: var(--color-text-faint);
   letter-spacing: 0.04em;
 }
 
@@ -147,7 +139,7 @@
 
 .bd-divider-ornament {
   font-size: var(--text-lg);
-  color: var(--amber);
+  color: var(--color-accent);
   opacity: 0.5;
   letter-spacing: 0.5em;
 }
@@ -163,7 +155,7 @@
   text-align: center;
   font-size: clamp(1.5rem, 4vw, 2rem);
   font-weight: 600;
-  color: var(--cream);
+  color: var(--color-text);
   margin-bottom: 48px;
   letter-spacing: -0.01em;
 }
@@ -176,8 +168,8 @@
 
 .bd-feature-card {
   grid-column: span 2;
-  background: var(--bourbon-card);
-  border: 1px solid var(--divider);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: 28px 24px;
   transition: border-color var(--dur-fast), transform var(--dur-fast);
@@ -192,7 +184,7 @@
 }
 
 .bd-feature-icon {
-  color: var(--amber);
+  color: var(--color-accent);
   margin-bottom: 16px;
 }
 
@@ -200,19 +192,19 @@
   font-size: var(--text-lg);
   font-weight: 600;
   font-family: 'Playfair Display', Georgia, serif;
-  color: var(--cream);
+  color: var(--color-text);
   margin-bottom: 8px;
 }
 
 .bd-feature-body {
   font-size: var(--text-sm);
   line-height: 1.6;
-  color: var(--cream-muted);
+  color: var(--color-text-muted);
 }
 
 .bd-footer {
   margin-top: auto;
-  border-top: 1px solid var(--divider);
+  border-top: 1px solid var(--color-border);
   padding: 36px 24px;
   text-align: center;
   display: flex;
@@ -224,7 +216,7 @@
 .bd-footer-name {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: var(--text-base);
-  color: var(--amber);
+  color: var(--color-accent);
   letter-spacing: 0.04em;
 }
 
@@ -233,25 +225,25 @@
   align-items: center;
   gap: 12px;
   font-size: var(--text-sm);
-  color: var(--cream-muted);
+  color: var(--color-text-muted);
 }
 
 .bd-footer-links a {
-  color: var(--cream-muted);
+  color: var(--color-text-muted);
   transition: color var(--dur-fast);
 }
 
 .bd-footer-links a:hover {
-  color: var(--amber-light);
+  color: var(--color-highlight);
 }
 
 .bd-footer-sep {
-  color: var(--cream-faint);
+  color: var(--color-text-faint);
 }
 
 .bd-footer-copy {
   font-size: var(--text-xs);
-  color: var(--cream-faint);
+  color: var(--color-text-faint);
 }
 
 @media (max-width: 680px) {
