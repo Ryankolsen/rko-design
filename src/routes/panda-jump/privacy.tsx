@@ -3,6 +3,7 @@ import { PrivacyPolicyPage } from '../../components/PrivacyPolicyPage'
 import './panda-jump.css'
 
 export const Route = createFileRoute('/panda-jump/privacy')({
+  head: () => ({ meta: [{ title: 'Panda Jump Privacy Policy — RKO Design' }] }),
   component: PandaJumpPrivacyPage,
 })
 

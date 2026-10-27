@@ -2,6 +2,7 @@ import { createFileRoute, Link } from '@tanstack/react-router'
 import './bourbon-dojo.css'
 
 export const Route = createFileRoute('/bourbon-dojo/')({
+  head: () => ({ meta: [{ title: 'Bourbon Dojo — RKO Design' }] }),
   component: BourbonDojoPage,
 })
 

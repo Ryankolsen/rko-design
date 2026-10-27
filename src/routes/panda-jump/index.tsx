@@ -3,6 +3,7 @@ import { StoreBadge } from '../../components/StoreBadge'
 import './panda-jump.css'
 
 export const Route = createFileRoute('/panda-jump/')({
+  head: () => ({ meta: [{ title: 'Panda Jump — RKO Design' }] }),
   component: PandaJumpPage,
 })
 

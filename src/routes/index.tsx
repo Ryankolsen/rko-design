@@ -5,6 +5,7 @@ import { projects } from '../data/projects'
 import { interests } from '../data/interests'
 
 export const Route = createFileRoute('/')({
+  head: () => ({ meta: [{ title: 'Ryan K Olsen — RKO Design' }] }),
   component: HomePage,
 })
 

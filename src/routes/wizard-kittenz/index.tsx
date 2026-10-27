@@ -3,6 +3,7 @@ import { projects } from '../../data/projects'
 import './wizard-kittenz.css'
 
 export const Route = createFileRoute('/wizard-kittenz/')({
+  head: () => ({ meta: [{ title: 'Wizard Kittenz — RKO Design' }] }),
   component: WizardKittenzPage,
 })
 

@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { PrivacyPolicyPage } from '../../components/PrivacyPolicyPage'
 
 export const Route = createFileRoute('/bourbon-dojo/privacy')({
+  head: () => ({ meta: [{ title: 'Bourbon Dojo Privacy Policy — RKO Design' }] }),
   component: BourbonDojoPrivacyPage,
 })
 
