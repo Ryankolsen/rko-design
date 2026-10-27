@@ -24,6 +24,11 @@
   --color-on-accent: var(--bg);
   --color-focus-ring: var(--color-accent);
 
+  /* App landing pages (.app-shell) take their look from these. */
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-heading: 'Cinzel', serif;
+  --shadow-banner: none;
+
   /* Project tags: text on a translucent tint of the same hue. */
   --color-tag-text: var(--color-accent);
   --color-tag-bg: rgb(var(--color-accent-rgb) / 0.15);

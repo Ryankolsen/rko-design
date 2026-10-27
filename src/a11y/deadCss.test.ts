@@ -6,8 +6,10 @@ import siteCss from '../styles/base.css?raw'
 
 // Pages are built one way; nothing renders these any more.
 describe('dead code', () => {
-  it('has no shared app landing page styles', () => {
-    expect(siteCss).not.toContain('.app-')
+  it('has no styles from the deleted AppLandingPage block', () => {
+    for (const name of ['.app-page', '.app-hero', '.app-feature', '.app-store-row']) {
+      expect(siteCss).not.toContain(name)
+    }
   })
 
   it('has no unused back-link or store badge variants', () => {

@@ -13,18 +13,18 @@ export function WizardKittenzPage() {
   const project = projects.find((p) => p.href === '/wizard-kittenz')!
   const { credit } = project
   return (
-    <div className="wk-page theme-wk">
+    <div className="app-shell wk-page theme-wk">
       <div className="wk-stars" />
-      <div className="wk-content">
-        <img className="wk-banner" src="/wizard-kittenz-banner.png" alt="Wizard Kittenz — four wizard cats in a dungeon" />
+      <div className="app-content">
+        <img className="app-banner" src="/wizard-kittenz-banner.png" alt="Wizard Kittenz — four wizard cats in a dungeon" />
         <h1>Wizard Kittenz</h1>
-        <p className="wk-tagline">Cast spells. Crawl dungeons. Be a cat.</p>
-        <p className="wk-description">
+        <p className="app-tagline">Cast spells. Crawl dungeons. Be a cat.</p>
+        <p className="app-description">
           A real-time co-op dungeon crawler for 1–4 players. Choose your class,
           gather your party, and descend into chaos — one room at a time.
           Catnip, ale, and mushrooms may or may not be involved.
         </p>
-        <div className="wk-store-links store-links">
+        <div className="app-store-links store-links">
           {project.storeLinks.map(({ platform, url }) => (
             <StoreBadge key={platform} platform={platform} url={url} />
           ))}
