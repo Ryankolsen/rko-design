@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import bourbonDojoCss from '../routes/bourbon-dojo/bourbon-dojo.css?raw'
 import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
+import wizardKittenzCss from '../routes/wizard-kittenz/wizard-kittenz.css?raw'
 import tokensCss from '../styles/tokens.css?raw'
 import { contrastRatio, meetsWcag, type WcagLevel } from './contrast'
 import { resolveTheme } from './themeTokens'
@@ -37,6 +38,17 @@ const THEMES: { selector: string; sheets: string[]; bg: string; pairs: Pair[] }[
     sheets: [tokensCss, pandaJumpCss],
     bg: '#f3faf0',
     pairs: [...PAIRS, { fg: '--color-heading', bg: '--color-bg', level: 'text' }],
+  },
+  {
+    selector: '.theme-wk',
+    sheets: [tokensCss, wizardKittenzCss],
+    bg: '#0d0d1a',
+    pairs: [
+      ...PAIRS,
+      ...['--color-text-soft', '--wk-gradient-start', '--wk-gradient-mid', '--wk-gradient-end'].map(
+        (fg): Pair => ({ fg, bg: '--color-bg', level: 'text' }),
+      ),
+    ],
   },
 ]
 

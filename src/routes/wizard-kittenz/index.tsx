@@ -13,7 +13,7 @@ export function WizardKittenzPage() {
   const project = projects.find((p) => p.href === '/wizard-kittenz')!
   const { credit } = project
   return (
-    <div className="wk-page">
+    <div className="wk-page theme-wk">
       <div className="wk-stars" />
       <div className="wk-content">
         <img className="wk-banner" src="/wizard-kittenz-banner.png" alt="Wizard Kittenz — four wizard cats in a dungeon" />

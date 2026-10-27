@@ -78,3 +78,21 @@ describe('WizardKittenzPage store badges', () => {
     expect(pageSource).not.toContain('target="_blank"')
   })
 })
+
+describe('WizardKittenzPage theme', () => {
+  it('wears the Wizard Kittenz theme', async () => {
+    const { container } = await renderWithRouter(<WizardKittenzPage />)
+    expect(container.querySelector('.wk-page')).toHaveClass('theme-wk')
+  })
+
+  it('drops the failing muted purple', () => {
+    expect(wizardKittenzCss).not.toMatch(/#6b5f8a/i)
+  })
+
+  it('uses the accent purple only inside the theme token block', () => {
+    const themeBlock = wizardKittenzCss.match(/\.theme-wk\s*\{[^}]*\}/)![0]
+    const outside = wizardKittenzCss.replace(themeBlock, '')
+    expect(themeBlock).toMatch(/#a78bfa/i)
+    expect(outside).not.toMatch(/#a78bfa/i)
+  })
+})
