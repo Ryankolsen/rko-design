@@ -86,10 +86,21 @@
   font-weight: 700;
   letter-spacing: -0.01em;
   line-height: 1.05;
+  /* Solid fallback where background-clip: text is unsupported. */
+  color: var(--amber-light);
   background: linear-gradient(135deg, var(--amber-light) 0%, var(--cream) 60%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Gradient text can vanish in high-contrast mode; use the system text color. */
+@media (forced-colors: active) {
+  .bd-app-name {
+    background: none;
+    -webkit-text-fill-color: CanvasText;
+    color: CanvasText;
+  }
 }
 
 .bd-app-tagline {

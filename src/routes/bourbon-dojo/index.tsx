@@ -82,7 +82,7 @@ export function BourbonDojoPage() {
         <div className="bd-hero-glow" aria-hidden="true" />
 
         <div className="bd-logo-lockup">
-          <img src="/bourbon-dojo-icon.png" alt="Bourbon Dojo icon" className="bd-app-icon" />
+          <img src="/bourbon-dojo-icon.png" alt="" className="bd-app-icon" />
           <div className="bd-wordmark">
             <h1 className="bd-app-name">Bourbon Dojo</h1>
             <p className="bd-app-tagline">Master your collection.</p>

@@ -47,6 +47,12 @@ describe('BourbonDojoPage', () => {
     expect(pageSource).not.toContain('target="_blank"')
   })
 
+  it('treats the hero icon as decorative beside the app name heading', async () => {
+    const { container } = await render()
+    expect(screen.queryByRole('img', { name: /Bourbon Dojo icon/ })).toBeNull()
+    expect(container.querySelector('img[src="/bourbon-dojo-icon.png"]')).toHaveAttribute('alt', '')
+  })
+
   it('links Contact to the RKO Design email', async () => {
     await render()
     expect(screen.getByRole('link', { name: 'Contact' }).getAttribute('href')).toBe(
