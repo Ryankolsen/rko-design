@@ -181,6 +181,7 @@ main:focus { outline: none; }
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: clip;
 }
 
 .hero-overlay {
@@ -200,6 +201,26 @@ main:focus { outline: none; }
   text-align: center;
   padding: 2rem;
   max-width: 900px;
+  /* Scrim opacity at its center; raise it if the text gets hard to read. */
+  --hero-scrim: 0.65;
+}
+
+/* Scrim: darkens the image behind the text block only, fading out well before
+   its edges so the rest of the photo stays vivid. Sized past the content so
+   even the corners of each text box sit in the dark middle. */
+.hero-content::before {
+  content: '';
+  position: absolute;
+  inset: -45% -55%;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    closest-side,
+    rgb(var(--color-bg-rgb) / var(--hero-scrim)) 0%,
+    rgb(var(--color-bg-rgb) / calc(var(--hero-scrim) * 0.9)) 50%,
+    rgb(var(--color-bg-rgb) / calc(var(--hero-scrim) * 0.55)) 72%,
+    rgb(var(--color-bg-rgb) / 0) 100%
+  );
 }
 
 .hero-eyebrow {
@@ -231,7 +252,7 @@ h1 {
 
 .hero-sub {
   font-size: var(--text-lg);
-  color: var(--color-text-muted);
+  color: var(--color-text);
   letter-spacing: 0.04em;
   margin-bottom: 2.75rem;
   opacity: 0;
