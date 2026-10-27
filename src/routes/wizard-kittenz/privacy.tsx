@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ExternalLink } from '../../components/ExternalLink'
 import { PrivacyPolicyPage } from '../../components/PrivacyPolicyPage'
+import './wizard-kittenz.css'
 
 export const Route = createFileRoute('/wizard-kittenz/privacy')({
   head: () => ({ meta: [{ title: 'Wizard Kittenz Privacy Policy — RKO Design' }] }),
@@ -10,6 +11,7 @@ export const Route = createFileRoute('/wizard-kittenz/privacy')({
 export function WizardKittenzPrivacyPage() {
   return (
     <PrivacyPolicyPage
+      theme="wk"
       appName="Privacy Policy"
       effectiveDate="Effective date: May 13, 2026 · App: Wizard Kittenz · Package: com.wizardkittenz.game"
       backHref="/wizard-kittenz"

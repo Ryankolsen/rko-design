@@ -1,6 +1,7 @@
 import { cleanup, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../../test-utils'
+import privacySource from './privacy.tsx?raw'
 import { BourbonDojoPrivacyPage } from './privacy'
 
 afterEach(cleanup)
@@ -110,5 +111,17 @@ describe('BourbonDojoPrivacyPage external links', () => {
       'href',
       'https://supabase.com/privacy',
     )
+  })
+})
+
+describe('BourbonDojoPrivacyPage theme', () => {
+  it('wears the app theme', async () => {
+    const { container } = await renderWithRouter(<BourbonDojoPrivacyPage />)
+
+    expect(container.querySelector('.privacy-page')).toHaveClass('privacy-page', 'theme-bd')
+  })
+
+  it('imports the app stylesheet that defines the theme', () => {
+    expect(privacySource).toContain("import './bourbon-dojo.css'")
   })
 })

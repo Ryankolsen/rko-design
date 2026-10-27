@@ -1,6 +1,7 @@
 import { cleanup, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../../test-utils'
+import privacySource from './privacy.tsx?raw'
 import { WizardKittenzPrivacyPage } from './privacy'
 
 afterEach(cleanup)
@@ -73,5 +74,17 @@ describe('WizardKittenzPrivacyPage external links', () => {
       'href',
       'https://policies.google.com/privacy',
     )
+  })
+})
+
+describe('WizardKittenzPrivacyPage theme', () => {
+  it('wears the app theme', async () => {
+    const { container } = await renderWithRouter(<WizardKittenzPrivacyPage />)
+
+    expect(container.querySelector('.privacy-page')).toHaveClass('privacy-page', 'theme-wk')
+  })
+
+  it('imports the app stylesheet that defines the theme', () => {
+    expect(privacySource).toContain("import './wizard-kittenz.css'")
   })
 })

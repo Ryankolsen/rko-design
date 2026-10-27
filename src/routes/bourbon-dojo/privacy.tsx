@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { ExternalLink } from '../../components/ExternalLink'
 import { PrivacyPolicyPage } from '../../components/PrivacyPolicyPage'
+import './bourbon-dojo.css'
 
 export const Route = createFileRoute('/bourbon-dojo/privacy')({
   head: () => ({ meta: [{ title: 'Bourbon Dojo Privacy Policy — RKO Design' }] }),
@@ -10,6 +11,7 @@ export const Route = createFileRoute('/bourbon-dojo/privacy')({
 export function BourbonDojoPrivacyPage() {
   return (
     <PrivacyPolicyPage
+      theme="bd"
       appName="Bourbon Dojo Privacy Policy"
       effectiveDate="Last updated: October 17, 2026"
       backHref="/bourbon-dojo"
