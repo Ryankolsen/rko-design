@@ -94,3 +94,21 @@ describe('BourbonDojoPrivacyPage', () => {
     expect(screen.queryByText(/April 25, 2026/)).toBeNull()
   })
 })
+
+describe('BourbonDojoPrivacyPage external links', () => {
+  it('announces that each third-party policy opens in a new tab', async () => {
+    await renderWithRouter(<BourbonDojoPrivacyPage />)
+
+    const google = screen.getAllByRole('link', { name: "Google's Privacy Policy (opens in new tab)" })
+    expect(google).toHaveLength(2)
+    for (const link of google) expect(link).toHaveAttribute('href', 'https://policies.google.com/privacy')
+    expect(screen.getByRole('link', { name: "Apple's Privacy Policy (opens in new tab)" })).toHaveAttribute(
+      'href',
+      'https://www.apple.com/legal/privacy/',
+    )
+    expect(screen.getByRole('link', { name: "Supabase's Privacy Policy (opens in new tab)" })).toHaveAttribute(
+      'href',
+      'https://supabase.com/privacy',
+    )
+  })
+})

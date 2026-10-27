@@ -65,3 +65,14 @@ describe('WizardKittenzPrivacyPage', () => {
     expect(backLink).toHaveAttribute('href', '/wizard-kittenz')
   })
 })
+
+describe('WizardKittenzPrivacyPage external links', () => {
+  it('announces that the Google policy opens in a new tab', async () => {
+    await renderWithRouter(<WizardKittenzPrivacyPage />)
+
+    expect(screen.getByRole('link', { name: "Google's Privacy Policy (opens in new tab)" })).toHaveAttribute(
+      'href',
+      'https://policies.google.com/privacy',
+    )
+  })
+})

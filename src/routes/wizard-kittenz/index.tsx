@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
+import { ExternalLink } from '../../components/ExternalLink'
 import { projects } from '../../data/projects'
 import './wizard-kittenz.css'
 
@@ -36,9 +37,7 @@ export function WizardKittenzPage() {
             <h2 className="wk-credit-heading">{credit.role}</h2>
             <p className="wk-credit-text">
               {credit.detailText} {credit.name} —{' '}
-              <a href={credit.url} target="_blank" rel="noopener noreferrer">
-                {credit.linkLabel}
-              </a>
+              <ExternalLink href={credit.url}>{credit.linkLabel}</ExternalLink>
             </p>
           </section>
         )}

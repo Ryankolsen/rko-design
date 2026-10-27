@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { ExternalLink } from '../../components/ExternalLink'
 import { PrivacyPolicyPage } from '../../components/PrivacyPolicyPage'
 
 export const Route = createFileRoute('/wizard-kittenz/privacy')({
@@ -64,7 +65,7 @@ export function WizardKittenzPrivacyPage() {
             <>
               <p>Wizard Kittenz uses the following third-party services, each governed by their own privacy policies:</p>
               <ul>
-                <li><strong>Google Play Billing</strong> — processes in-app purchases. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.</li>
+                <li><strong>Google Play Billing</strong> — processes in-app purchases. See <ExternalLink href="https://policies.google.com/privacy">Google's Privacy Policy</ExternalLink>.</li>
                 <li><strong>Nakama (Heroic Labs)</strong> — open-source game server we self-host for authentication, multiplayer, and save sync. Data is stored on servers we control and is not shared with Heroic Labs.</li>
               </ul>
             </>

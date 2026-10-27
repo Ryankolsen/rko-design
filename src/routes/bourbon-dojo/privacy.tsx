@@ -1,4 +1,5 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { ExternalLink } from '../../components/ExternalLink'
 import { PrivacyPolicyPage } from '../../components/PrivacyPolicyPage'
 
 export const Route = createFileRoute('/bourbon-dojo/privacy')({
@@ -115,20 +116,20 @@ export function BourbonDojoPrivacyPage() {
             <ul>
               <li>
                 <strong>Google Sign-In</strong> — used for authentication. Subject to{' '}
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.
+                <ExternalLink href="https://policies.google.com/privacy">Google's Privacy Policy</ExternalLink>.
               </li>
               <li>
                 <strong>Sign in with Apple</strong> — used for authentication. Subject to{' '}
-                <a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple's Privacy Policy</a>.
+                <ExternalLink href="https://www.apple.com/legal/privacy/">Apple's Privacy Policy</ExternalLink>.
               </li>
               <li>
                 <strong>Google Places API</strong> — used for store name autocomplete in sale alerts.
                 Search queries are sent to Google. Subject to{' '}
-                <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a>.
+                <ExternalLink href="https://policies.google.com/privacy">Google's Privacy Policy</ExternalLink>.
               </li>
               <li>
                 <strong>Supabase</strong> — database, email/password authentication, and profile photo storage. Subject to{' '}
-                <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase's Privacy Policy</a>.
+                <ExternalLink href="https://supabase.com/privacy">Supabase's Privacy Policy</ExternalLink>.
               </li>
               <li>
                 <strong>Expo / EAS</strong> — used for app delivery and over-the-air updates.
