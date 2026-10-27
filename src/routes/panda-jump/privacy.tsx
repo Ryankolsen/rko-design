@@ -10,6 +10,7 @@ export const Route = createFileRoute('/panda-jump/privacy')({
 function PandaJumpPrivacyPage() {
   return (
     <PrivacyPolicyPage
+      theme="pj"
       appName="Privacy Policy"
       effectiveDate="Effective date: October 2, 2026 · App: Panda Jump · Package: com.ryankolsen.pandajump"
       backHref="/panda-jump"
@@ -66,10 +67,6 @@ function PandaJumpPrivacyPage() {
               effective date above before that change is released.
             </p>
           ),
-        },
-        {
-          heading: '6. Contact Us',
-          body: null,
         },
       ]}
     />

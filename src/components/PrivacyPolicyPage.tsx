@@ -4,8 +4,11 @@ import '../style.css'
 
 interface PrivacyPolicySection {
   heading: string
-  body: ReactNode
+  /** A section without a body is not rendered, so no heading stands empty. */
+  body?: ReactNode
 }
+
+type Theme = 'bd' | 'pj' | 'wk'
 
 interface PrivacyPolicyPageProps {
   appName: string
@@ -15,6 +18,8 @@ interface PrivacyPolicyPageProps {
   contactEmail: string
   sections: PrivacyPolicySection[]
   intro?: ReactNode
+  /** The app's theme class, so the page matches its landing page. */
+  theme?: Theme
 }
 
 export function PrivacyPolicyPage({
@@ -25,9 +30,10 @@ export function PrivacyPolicyPage({
   contactEmail,
   sections,
   intro,
+  theme,
 }: PrivacyPolicyPageProps) {
   return (
-    <div className="privacy-page">
+    <div className={theme ? `privacy-page theme-${theme}` : 'privacy-page'}>
       <div className="privacy-container">
         <Link to={backHref} className="privacy-back">
           {backLabel}
@@ -38,7 +44,7 @@ export function PrivacyPolicyPage({
 
         {intro}
 
-        {sections.map((section, index) => (
+        {sections.filter((section) => section.body != null).map((section, index) => (
           <section className="privacy-section" key={index}>
             <h2>{section.heading}</h2>
             <div className="privacy-section-body">{section.body}</div>

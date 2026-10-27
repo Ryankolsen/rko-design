@@ -739,6 +739,13 @@ section {
   line-height: 1.75;
 }
 
+/* A themed page covers the site background and starfield with its own. */
+.privacy-page:is(.theme-bd, .theme-pj, .theme-wk) {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
 .privacy-container {
   max-width: 720px;
   margin: 0 auto;
@@ -746,7 +753,7 @@ section {
 
 .privacy-back {
   display: inline-block;
-  color: var(--gold);
+  color: var(--color-link);
   text-decoration: none;
   font-size: 0.9rem;
   margin-bottom: 2rem;
@@ -762,7 +769,7 @@ section {
 }
 
 .privacy-meta {
-  color: var(--text-muted);
+  color: var(--color-text-muted);
   font-size: 0.9rem;
   margin-bottom: 2rem;
 }
@@ -774,12 +781,12 @@ section {
 .privacy-section h2 {
   font-size: 1.2rem;
   margin-bottom: 0.6rem;
-  color: var(--gold);
+  color: var(--color-accent);
 }
 
 .privacy-section-body p {
   margin-bottom: 1rem;
-  color: var(--text);
+  color: var(--color-text);
 }
 
 .privacy-section-body ul {
@@ -788,7 +795,7 @@ section {
 }
 
 .privacy-section-body a {
-  color: var(--gold);
+  color: var(--color-link);
 }
 
 .privacy-section-body a:hover {
@@ -796,8 +803,8 @@ section {
 }
 
 .privacy-contact {
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 1.25rem 1.5rem;
   margin-top: 2rem;
@@ -808,7 +815,7 @@ section {
 }
 
 .privacy-contact a {
-  color: var(--gold);
+  color: var(--color-link);
 }
 
 /* FOOTER */

@@ -1,6 +1,7 @@
 import { cleanup, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../test-utils'
+import siteCss from '../style.css?raw'
 import { PrivacyPolicyPage } from './PrivacyPolicyPage'
 
 afterEach(cleanup)
@@ -119,5 +120,50 @@ describe('PrivacyPolicyPage', () => {
     )
 
     expect(screen.queryByTestId('intro')).not.toBeInTheDocument()
+  })
+})
+
+const baseProps = {
+  appName: 'Test App',
+  effectiveDate: 'Effective: Jan 1, 2026',
+  backHref: '/test-app',
+  backLabel: '← Test App',
+  contactEmail: 'test@example.com',
+  sections: [{ heading: 'Section One', body: 'Body one.' }],
+}
+
+describe('PrivacyPolicyPage theme', () => {
+  it('applies the app theme class to its root', async () => {
+    const { container } = await renderWithRouter(<PrivacyPolicyPage {...baseProps} theme="pj" />)
+
+    expect(container.querySelector('.privacy-page')).toHaveClass('privacy-page', 'theme-pj')
+  })
+
+  it('has no theme class without a theme', async () => {
+    const { container } = await renderWithRouter(<PrivacyPolicyPage {...baseProps} />)
+
+    expect(container.querySelector('.privacy-page')!.className).toBe('privacy-page')
+  })
+
+  it('colors its rules from semantic tokens only', () => {
+    const rules = [...siteCss.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(([, selector]) =>
+      selector.includes('.privacy-'),
+    )
+    expect(rules.length).toBeGreaterThan(0)
+    for (const [, selector, body] of rules) {
+      expect(body, selector.trim()).not.toMatch(/var\(--(gold|text-muted|text|card-bg|card-border)\)/)
+      expect(body, selector.trim()).not.toMatch(/#[0-9a-f]{3,8}\b/i)
+    }
+  })
+})
+
+describe('PrivacyPolicyPage empty sections', () => {
+  it('renders no heading for a section without a body', async () => {
+    await renderWithRouter(
+      <PrivacyPolicyPage {...baseProps} sections={[...baseProps.sections, { heading: 'Empty' }]} />,
+    )
+
+    expect(screen.queryByRole('heading', { name: 'Empty' })).toBeNull()
+    expect(screen.getByRole('heading', { name: 'Section One' })).toBeInTheDocument()
   })
 })

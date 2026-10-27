@@ -15,15 +15,14 @@ const EXPECTED_HEADINGS = [
   '7. Your Rights & Account Deletion',
   '8. Security',
   '9. Changes to This Policy',
-  '10. Contact Us',
 ]
 
 describe('WizardKittenzPrivacyPage', () => {
-  it('renders all 10 numbered section headings in order', async () => {
+  it('renders the numbered section headings in order, with no empty Contact Us', async () => {
     await renderWithRouter(<WizardKittenzPrivacyPage />)
 
     const headings = screen.getAllByRole('heading', { level: 2 })
-    expect(headings).toHaveLength(10)
+    expect(headings).toHaveLength(EXPECTED_HEADINGS.length)
     headings.forEach((heading, i) => {
       expect(heading).toHaveTextContent(EXPECTED_HEADINGS[i])
     })

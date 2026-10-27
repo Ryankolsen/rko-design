@@ -125,10 +125,6 @@ export function WizardKittenzPrivacyPage() {
             </p>
           ),
         },
-        {
-          heading: '10. Contact Us',
-          body: null,
-        },
       ]}
     />
   )
