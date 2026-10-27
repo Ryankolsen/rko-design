@@ -22,8 +22,11 @@ This starts the Vite dev server (printed URL, typically `http://localhost:5173`)
 npm run build      # type-check (tsc) and build for production into dist/
 npm run preview    # serve the production build locally
 npm run typecheck  # run TypeScript without emitting output
-npm run test       # placeholder, no unit tests yet
+npm run test       # run the vitest suite (jsdom, includes axe on every route)
+npm run audit:a11y # axe in real Chrome on every route at 1280×800 and 390×844, color-contrast on
 ```
+
+`audit:a11y` builds and previews the site itself and needs Google Chrome installed. Set `BASE=https://…` to audit a deployed site instead. It isn't part of the pre-commit gate; run it before a release or after visual changes. Contrast that axe can't decide (text over gradients, images or pseudo-elements) is listed as "incomplete" and needs a manual check.
 
 ## Deployment
 
