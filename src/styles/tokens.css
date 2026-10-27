@@ -1,0 +1,26 @@
+/* Design tokens. Semantic --color-* tokens are what new rules should use;
+   the legacy names above them are kept until the CSS consolidation removes them. */
+:root {
+  --bg: #060812;
+  --gold: #f0a835;
+  --gold-dim: rgba(240, 168, 53, 0.15);
+  --cyan: #4db8ff;
+  --purple: #9b5de5;
+  --text: #e8eaf0;
+  --text-muted: #7a849e;
+  --card-bg: rgba(255, 255, 255, 0.04);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --radius: 16px;
+
+  --color-bg: var(--bg);
+  /* --card-bg as rendered on --bg; contrast needs an opaque surface. */
+  --color-surface: #10121b;
+  --color-border: var(--card-border);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-accent: var(--gold);
+  --color-accent-rgb: 240 168 53;
+  --color-link: var(--color-accent);
+  --color-on-accent: var(--bg);
+  --color-focus-ring: var(--color-accent);
+}
