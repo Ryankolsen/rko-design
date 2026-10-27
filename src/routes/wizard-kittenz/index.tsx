@@ -38,7 +38,7 @@ export function WizardKittenzPage() {
             </p>
           </section>
         )}
-        <footer className="wk-footer">
+        <footer className="app-footer">
           <Link to="/wizard-kittenz/privacy">Privacy Policy</Link>
         </footer>
       </div>

@@ -625,6 +625,19 @@ section {
   margin-bottom: 3rem;
 }
 
+.app-footer {
+  margin-top: 3rem;
+  padding: 0;
+  border-top: none;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+.app-footer a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
 /* PRIVACY POLICY PAGE */
 .privacy-page {
   padding: 8rem 1.5rem 4rem;

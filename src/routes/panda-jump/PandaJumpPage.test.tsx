@@ -1,6 +1,7 @@
 import { cleanup, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../../test-utils'
+import baseCss from '../../styles/base.css?raw'
 import pandaJumpCss from './panda-jump.css?raw'
 import { PandaJumpPage } from './index'
 
@@ -34,11 +35,13 @@ describe('Panda Jump styles', () => {
     for (const line of lines) expect(line.trim()).toMatch(/^--[\w-]+:/)
   })
 
-  it('underlines the footer link at rest and keeps it readable in size', () => {
-    const rule = pandaJumpCss.match(/\.pj-footer a\s*\{([^}]*)\}/)
+  it('uses the shared footer, with the link underlined at rest and readable in size', async () => {
+    await render()
+    expect(screen.getByRole('contentinfo')).toHaveClass('app-footer')
+    const rule = baseCss.match(/\.app-footer a\s*\{([^}]*)\}/)
     expect(rule).not.toBeNull()
-    expect(rule![1]).not.toMatch(/text-decoration:\s*none/)
-    const footer = pandaJumpCss.match(/\.pj-footer\s*\{([^}]*)\}/)![1] + rule![1]
+    expect(rule![1]).toMatch(/text-decoration:\s*underline/)
+    const footer = baseCss.match(/\.app-footer\s*\{([^}]*)\}/)![1] + rule![1]
     const sizes = [...footer.matchAll(/font-size:\s*([\d.]+)rem/g)].map((m) => Number(m[1]))
     expect(sizes.at(-1)).toBeGreaterThanOrEqual(0.875)
   })

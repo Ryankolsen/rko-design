@@ -93,20 +93,7 @@
   text-decoration: underline;
 }
 
-.wk-footer {
-  margin-top: 3rem;
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  text-align: center;
-  padding: 0;
-  border-top: none;
-}
-
-.wk-footer a {
-  color: var(--color-link);
-  text-decoration: none;
-}
-
-.wk-footer a:hover {
-  text-decoration: underline;
-}
+/* A smaller footer whose link underlines on hover. */
+.wk-page .app-footer { font-size: 0.8rem; }
+.wk-page .app-footer a { text-decoration: none; }
+.wk-page .app-footer a:hover { text-decoration: underline; }

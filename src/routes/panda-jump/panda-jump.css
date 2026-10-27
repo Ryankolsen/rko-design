@@ -21,20 +21,6 @@
   color: var(--color-heading);
 }
 
-.pj-footer {
-  margin-top: 3rem;
-  font-size: 0.875rem;
-  color: var(--color-text-muted);
-  text-align: center;
-  padding: 0;
-  border-top: none;
-}
-
-.pj-footer a {
-  color: var(--color-link);
-  text-decoration: underline;
-}
-
 /* The coming-soon badge keeps Panda Jump's green outline. */
 .theme-pj .store-btn.coming-soon {
   border-color: var(--color-accent);

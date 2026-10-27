@@ -26,7 +26,7 @@ export function PandaJumpPage() {
         <div className="app-store-links store-links">
           <StoreBadge platform="android" comingSoon />
         </div>
-        <footer className="pj-footer">
+        <footer className="app-footer">
           <Link to="/panda-jump/privacy">Privacy Policy</Link>
         </footer>
       </div>
