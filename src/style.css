@@ -347,9 +347,9 @@ section {
   text-transform: uppercase;
   padding: 0.28rem 0.75rem;
   border-radius: 100px;
-  background: var(--gold-dim);
-  color: var(--gold);
-  border: 1px solid rgba(240, 168, 53, 0.28);
+  background: var(--color-tag-bg);
+  color: var(--color-tag-text);
+  border: 1px solid var(--color-tag-border);
 }
 
 .tags {
@@ -360,9 +360,9 @@ section {
 }
 
 .tag.game {
-  background: rgba(155, 93, 229, 0.12);
-  color: var(--purple);
-  border-color: rgba(155, 93, 229, 0.28);
+  background: var(--color-tag-game-bg);
+  color: var(--color-tag-game-text);
+  border-color: var(--color-tag-game-border);
 }
 
 .card-body h3 {

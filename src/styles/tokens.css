@@ -23,6 +23,15 @@
   --color-link: var(--color-accent);
   --color-on-accent: var(--bg);
   --color-focus-ring: var(--color-accent);
+
+  /* Project tags: text on a translucent tint of the same hue. */
+  --color-tag-text: var(--color-accent);
+  --color-tag-bg: rgb(var(--color-accent-rgb) / 0.15);
+  --color-tag-border: rgb(var(--color-accent-rgb) / 0.28);
+  /* Lighter than --purple, which was 4.0:1 on its tint. */
+  --color-tag-game-text: #b48cf0;
+  --color-tag-game-bg: rgb(155 93 229 / 0.12);
+  --color-tag-game-border: rgb(155 93 229 / 0.28);
 }
 
 /* Keyboard focus only; mouse clicks don't trigger :focus-visible on links and buttons. */

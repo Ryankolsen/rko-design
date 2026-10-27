@@ -2,8 +2,9 @@ import { describe, expect, it } from 'vitest'
 import bourbonDojoCss from '../routes/bourbon-dojo/bourbon-dojo.css?raw'
 import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
 import wizardKittenzCss from '../routes/wizard-kittenz/wizard-kittenz.css?raw'
+import siteCss from '../style.css?raw'
 import tokensCss from '../styles/tokens.css?raw'
-import { contrastRatio, meetsWcag, type WcagLevel } from './contrast'
+import { composite, contrastRatio, meetsWcag, parseColor, type WcagLevel } from './contrast'
 import { resolveTheme } from './themeTokens'
 
 interface Pair {
@@ -62,5 +63,30 @@ describe.each(THEMES)('$selector token contrast', ({ selector, sheets, bg, pairs
   it.each(pairs)('$fg on $bg meets $level', ({ fg, bg, level }) => {
     const ratio = contrastRatio(tokens[fg], tokens[bg])
     expect(meetsWcag(ratio, level), `${fg} ${tokens[fg]} on ${bg} ${tokens[bg]} is ${ratio.toFixed(2)}:1`).toBe(true)
+  })
+})
+
+// Tags sit on a translucent tint over the card surface, so measure against
+// the color actually seen: tint over surface over page.
+describe('home project tag contrast', () => {
+  const tokens = resolveTheme([tokensCss], ':root')
+  const seen = (tint: string) =>
+    composite(parseColor(tint), composite(parseColor(tokens['--color-surface']), parseColor(tokens['--color-bg'])))
+
+  it.each([
+    ['default', '--color-tag-text', '--color-tag-bg'],
+    ['game', '--color-tag-game-text', '--color-tag-game-bg'],
+  ])('%s tag text meets AA on its tint', (_, text, bg) => {
+    expect(tokens[text]).toBeDefined()
+    const ratio = contrastRatio(tokens[text], seen(tokens[bg]))
+    expect(ratio, `${tokens[text]} is ${ratio.toFixed(2)}:1`).toBeGreaterThanOrEqual(4.5)
+  })
+
+  it('styles the game tag from its tokens, not the raw purple', () => {
+    const rule = siteCss.match(/\.tag\.game\s*\{([^}]*)\}/)![1]
+    expect(rule).toContain('var(--color-tag-game-text)')
+    expect(rule).toContain('var(--color-tag-game-bg)')
+    expect(rule).not.toMatch(/#9b5de5/i)
+    expect(rule).not.toContain('var(--purple)')
   })
 })
