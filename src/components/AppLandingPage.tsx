@@ -75,7 +75,7 @@ export function AppLandingPage({
               key={link.platform}
               platform={link.platform}
               url={link.url}
-              disabled={link.disabled}
+              comingSoon={link.disabled}
               label={link.label}
             />
           ))}

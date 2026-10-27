@@ -1,8 +1,18 @@
+import { ExternalLink } from './ExternalLink'
+
+type Platform = 'ios' | 'android'
+
 interface StoreBadgeProps {
-  platform: 'ios' | 'android'
+  platform: Platform
   url?: string
-  disabled?: boolean
+  /** Not on this store yet. Also implied by a missing url. */
+  comingSoon?: boolean
   label?: string
+}
+
+const LABELS: Record<Platform, { available: string; comingSoon: string }> = {
+  ios: { available: 'Download on iOS', comingSoon: 'Coming soon to the App Store' },
+  android: { available: 'Get it on Google Play', comingSoon: 'Coming soon to Google Play' },
 }
 
 const IOS_ICON = (
@@ -13,25 +23,23 @@ const ANDROID_ICON = (
   <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18" aria-hidden="true"><path d="M17.523 15.341l-.9-1.6A5.7 5.7 0 0018 11a5.7 5.7 0 00-.377-2.059l.891-1.562A.75.75 0 0017.16 6.5l-.9 1.575A5.985 5.985 0 0012 6.5a5.985 5.985 0 00-4.26 1.575L6.84 6.5a.75.75 0 00-1.353.879l.891 1.562A5.7 5.7 0 006 11a5.7 5.7 0 00.377 1.741l-.9 1.6a.75.75 0 001.3.75l.857-1.5A5.985 5.985 0 0012 15.5a5.985 5.985 0 004.366-1.909l.857 1.5a.75.75 0 001.3-.75zM9.5 12a.5.5 0 110-1 .5.5 0 010 1zm5 0a.5.5 0 110-1 .5.5 0 010 1z" /></svg>
 )
 
-export function StoreBadge({ platform, url, disabled, label }: StoreBadgeProps) {
+export function StoreBadge({ platform, url, comingSoon, label }: StoreBadgeProps) {
   const icon = platform === 'ios' ? IOS_ICON : ANDROID_ICON
-  const defaultLabel = platform === 'ios' ? 'Download on iOS' : 'Get it on Google Play'
-  const text = label ?? defaultLabel
-  const className = `store-btn ${platform === 'ios' ? 'ios' : 'android'}${disabled ? ' disabled' : ''}`
 
-  if (disabled) {
+  if (comingSoon || !url) {
+    // Plain text, not a disabled link: there is nothing to activate.
     return (
-      <span className={className} aria-disabled="true">
+      <span className={`store-btn ${platform} coming-soon`}>
         {icon}
-        {text}
+        {label ?? LABELS[platform].comingSoon}
       </span>
     )
   }
 
   return (
-    <a href={url} className={className} target="_blank" rel="noopener noreferrer">
+    <ExternalLink href={url} className={`store-btn ${platform}`}>
       {icon}
-      {text}
-    </a>
+      {label ?? LABELS[platform].available}
+    </ExternalLink>
   )
 }

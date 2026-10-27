@@ -406,6 +406,7 @@ section {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  min-height: 44px;
   padding: 0.65rem 1.2rem;
   border-radius: 8px;
   font-family: 'Space Grotesk', sans-serif;
@@ -424,7 +425,7 @@ section {
   transition: background 0.2s, box-shadow 0.2s;
 }
 
-.store-btn.ios:hover {
+.store-btn.ios:not(.coming-soon):hover {
   background: #ffbb47;
   box-shadow: 0 0 28px rgba(240, 168, 53, 0.45);
 }
@@ -437,7 +438,7 @@ section {
   transition: background 0.2s, box-shadow 0.2s;
 }
 
-.store-btn.android:hover {
+.store-btn.android:not(.coming-soon):hover {
   box-shadow: 0 0 28px rgba(77, 184, 255, 0.45);
 }
 
@@ -448,10 +449,12 @@ section {
   cursor: default;
 }
 
-.store-btn.disabled {
-  opacity: 0.55;
+/* Not on the store yet: plain text, opaque so it meets AA on its own colors. */
+.store-btn.coming-soon {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-text-muted);
   cursor: default;
-  pointer-events: none;
 }
 
 .store-btn.dev {

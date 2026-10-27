@@ -85,3 +85,10 @@
 .pj-back:hover {
   text-decoration: underline;
 }
+
+/* The coming-soon badge in Panda Jump's light palette, not the site's dark one. */
+.pj-page .store-btn.coming-soon {
+  background: #ffffff;
+  color: #2f3b2c;
+  border-color: #3f7a34;
+}

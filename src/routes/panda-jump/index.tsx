@@ -24,7 +24,7 @@ function PandaJumpPage() {
           our panda. We polished it together from there.
         </p>
         <div className="pj-store-links store-links">
-          <StoreBadge platform="android" disabled label="Coming Soon on Google Play" />
+          <StoreBadge platform="android" comingSoon />
         </div>
         <footer className="pj-footer">
           <Link to="/panda-jump/privacy">Privacy Policy</Link>
