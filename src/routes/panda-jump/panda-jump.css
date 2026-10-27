@@ -86,17 +86,6 @@
   text-decoration: underline;
 }
 
-.pj-back {
-  display: inline-block;
-  color: var(--color-accent);
-  text-decoration: none;
-  font-size: 0.9rem;
-  margin-bottom: 2rem;
-}
-.pj-back:hover {
-  text-decoration: underline;
-}
-
 /* The coming-soon badge keeps Panda Jump's green outline. */
 .theme-pj .store-btn.coming-soon {
   border-color: var(--color-accent);
