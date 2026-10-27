@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import bourbonDojoCss from '../routes/bourbon-dojo/bourbon-dojo.css?raw'
+import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
 import tokensCss from '../styles/tokens.css?raw'
 import { contrastRatio, meetsWcag, type WcagLevel } from './contrast'
 import { resolveTheme } from './themeTokens'
@@ -30,6 +31,12 @@ const THEMES: { selector: string; sheets: string[]; bg: string; pairs: Pair[] }[
     sheets: [tokensCss, bourbonDojoCss],
     bg: '#1C0A00',
     pairs: [...PAIRS, { fg: '--color-text-faint', bg: '--color-bg', level: 'text' }],
+  },
+  {
+    selector: '.theme-pj',
+    sheets: [tokensCss, pandaJumpCss],
+    bg: '#f3faf0',
+    pairs: [...PAIRS, { fg: '--color-heading', bg: '--color-bg', level: 'text' }],
   },
 ]
 

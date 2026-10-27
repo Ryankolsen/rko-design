@@ -1,8 +1,23 @@
+.theme-pj {
+  --color-bg: #f3faf0;
+  --color-surface: #ffffff;
+  --color-border: rgb(var(--color-accent-rgb) / 0.25);
+  --color-text: #2f3b2c;
+  --color-text-muted: #5b6a56;
+  --color-accent: #3f7a34;
+  --color-accent-rgb: 63 122 52;
+  --color-link: var(--color-accent);
+  --color-on-accent: #ffffff;
+  --color-focus-ring: var(--color-accent);
+  /* The pink h1, darkened to pass AA as normal text. */
+  --color-heading: #c03a66;
+}
+
 .pj-page {
   position: relative;
   min-height: 100vh;
-  background: #f3faf0;
-  color: #2f3b2c;
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: 'Inter', sans-serif;
   display: flex;
   flex-direction: column;
@@ -24,27 +39,27 @@
   max-width: 700px;
   border-radius: 12px;
   margin-bottom: 1.75rem;
-  box-shadow: 0 0 30px rgba(63, 122, 52, 0.25);
+  box-shadow: 0 0 30px rgb(var(--color-accent-rgb) / 0.25);
 }
 
 .pj-page h1 {
   font-family: 'Playfair Display', serif;
   font-size: clamp(2.2rem, 6vw, 3.5rem);
   font-weight: 700;
-  color: #d94f7a;
+  color: var(--color-heading);
   margin-bottom: 0.75rem;
 }
 
 .pj-tagline {
   font-size: 1.1rem;
-  color: #3f7a34;
+  color: var(--color-accent);
   margin-bottom: 2rem;
   font-style: italic;
 }
 
 .pj-description {
   font-size: 1rem;
-  color: #2f3b2c;
+  color: var(--color-text);
   line-height: 1.7;
   margin-bottom: 2.5rem;
 }
@@ -59,25 +74,21 @@
 
 .pj-footer {
   margin-top: 3rem;
-  font-size: 0.8rem;
-  color: #6b7a66;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
   text-align: center;
   padding: 0;
   border-top: none;
 }
 
 .pj-footer a {
-  color: #3f7a34;
-  text-decoration: none;
-}
-
-.pj-footer a:hover {
+  color: var(--color-link);
   text-decoration: underline;
 }
 
 .pj-back {
   display: inline-block;
-  color: #3f7a34;
+  color: var(--color-accent);
   text-decoration: none;
   font-size: 0.9rem;
   margin-bottom: 2rem;
@@ -86,9 +97,7 @@
   text-decoration: underline;
 }
 
-/* The coming-soon badge in Panda Jump's light palette, not the site's dark one. */
-.pj-page .store-btn.coming-soon {
-  background: #ffffff;
-  color: #2f3b2c;
-  border-color: #3f7a34;
+/* The coming-soon badge keeps Panda Jump's green outline. */
+.theme-pj .store-btn.coming-soon {
+  border-color: var(--color-accent);
 }

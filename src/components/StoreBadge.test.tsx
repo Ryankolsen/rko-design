@@ -159,11 +159,15 @@ describe('StoreBadge styles', () => {
   })
 
   it('makes the coming-soon badge readable and visibly bounded on the Panda Jump page', () => {
-    const soon = declarations(pandaJumpCss, '.pj-page .store-btn.coming-soon')
-    const page = declarations(pandaJumpCss, '.pj-page').background
+    const pj = resolveTheme([tokensCss, pandaJumpCss], '.theme-pj')
+    const themed = (value: string) => value.replace(/var\((--[\w-]+)\)/g, (_, name: string) => pj[name])
+    const soon = {
+      ...declarations(siteCss, '.store-btn.coming-soon'),
+      ...declarations(pandaJumpCss, '.theme-pj .store-btn.coming-soon'),
+    }
 
-    expect(meetsWcag(contrastRatio(soon.color, soon.background), 'text')).toBe(true)
-    expect(meetsWcag(contrastRatio(borderColor(soon), page), 'non-text')).toBe(true)
+    expect(meetsWcag(contrastRatio(themed(soon.color), themed(soon.background)), 'text')).toBe(true)
+    expect(meetsWcag(contrastRatio(themed(soon['border-color']), pj['--color-bg']), 'non-text')).toBe(true)
   })
 })
 

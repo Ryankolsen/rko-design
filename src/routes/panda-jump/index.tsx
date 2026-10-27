@@ -7,9 +7,9 @@ export const Route = createFileRoute('/panda-jump/')({
   component: PandaJumpPage,
 })
 
-function PandaJumpPage() {
+export function PandaJumpPage() {
   return (
-    <div className="pj-page">
+    <div className="pj-page theme-pj">
       <div className="pj-content">
         <img className="pj-banner" src="/panda-jump-card.png" alt="Panda Jump — a panda leaping between platforms" />
         <h1>Panda Jump</h1>
