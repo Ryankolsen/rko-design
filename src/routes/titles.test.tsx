@@ -1,8 +1,7 @@
-import { act, cleanup, render, waitFor } from '@testing-library/react'
-import { createMemoryHistory, createRouter, RouterProvider } from '@tanstack/react-router'
+import { act, cleanup, waitFor } from '@testing-library/react'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import indexHtml from '../../index.html?raw'
-import { routeTree } from '../routeTree.gen'
+import { renderRoute } from '../test-utils'
 
 beforeEach(() => {
   vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue({
@@ -25,18 +24,9 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
-async function renderAt(path: string) {
-  const router = createRouter({ routeTree, history: createMemoryHistory({ initialEntries: [path] }) })
-  await router.load()
-  await act(async () => {
-    render(<RouterProvider router={router} />)
-  })
-  return router
-}
-
 describe('page titles', () => {
   it('titles the home page with the owner name', async () => {
-    await renderAt('/')
+    await renderRoute('/')
 
     await waitFor(() => expect(document.title).toBe('Ryan K Olsen — RKO Design'))
   })
@@ -52,13 +42,13 @@ describe('page titles per route', () => {
     ['/wizard-kittenz', 'Wizard Kittenz — RKO Design'],
     ['/wizard-kittenz/privacy', 'Wizard Kittenz Privacy Policy — RKO Design'],
   ])('%s is titled "%s"', async (path, title) => {
-    await renderAt(path)
+    await renderRoute(path)
 
     await waitFor(() => expect(document.title).toBe(title))
   })
 
   it('updates the title on client-side navigation', async () => {
-    const router = await renderAt('/bourbon-dojo')
+    const { router } = await renderRoute('/bourbon-dojo')
     await waitFor(() => expect(document.title).toBe('Bourbon Dojo — RKO Design'))
 
     await act(() => router.navigate({ to: '/bourbon-dojo/privacy' }))

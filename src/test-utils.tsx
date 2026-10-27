@@ -6,6 +6,7 @@ import {
   RouterProvider,
 } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
+import { routeTree } from './routeTree.gen'
 
 interface RenderWithRouterOptions {
   initialPath?: string
@@ -27,6 +28,20 @@ export async function renderWithRouter(
   { initialPath = '/' }: RenderWithRouterOptions = {},
 ): Promise<RenderResult & { router: ReturnType<typeof createTestRouter> }> {
   const router = createTestRouter(ui, initialPath)
+
+  await router.load()
+
+  let result!: RenderResult
+  await act(async () => {
+    result = render(<RouterProvider router={router} />)
+  })
+
+  return Object.assign(result, { router })
+}
+
+/** Renders `path` through the app's real route tree, Layout included. */
+export async function renderRoute(path: string) {
+  const router = createRouter({ routeTree, history: createMemoryHistory({ initialEntries: [path] }) })
 
   await router.load()
 
