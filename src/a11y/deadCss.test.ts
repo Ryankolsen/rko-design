@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 import bourbonDojoCss from '../routes/bourbon-dojo/bourbon-dojo.css?raw'
 import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
 import wizardKittenzCss from '../routes/wizard-kittenz/wizard-kittenz.css?raw'
-import siteCss from '../style.css?raw'
+import siteCss from '../styles/base.css?raw'
 
 // Pages are built one way; nothing renders these any more.
 describe('dead code', () => {

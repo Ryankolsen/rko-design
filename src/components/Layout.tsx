@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type MouseEvent, type ReactNode } from 're
 import { Link, useLocation } from '@tanstack/react-router'
 import { projects } from '../data/projects'
 import { Starfield } from './Starfield'
-import '../style.css'
+import '../styles/base.css'
 
 // Panda Jump is listed on Google Play for all ages, and Play holds the pages its
 // store listing links to under Families policy. Those pages must not link to the

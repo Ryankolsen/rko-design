@@ -1,7 +1,7 @@
 import { cleanup, screen, within } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../test-utils'
-import siteCss from '../style.css?raw'
+import siteCss from '../styles/base.css?raw'
 import { projects } from '../data/projects'
 import { ProjectCard } from './ProjectCard'
 

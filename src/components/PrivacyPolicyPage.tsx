@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link } from '@tanstack/react-router'
-import '../style.css'
+import '../styles/base.css'
 
 interface PrivacyPolicySection {
   heading: string

@@ -4,7 +4,7 @@ import { contrastRatio, meetsWcag } from '../a11y/contrast'
 import { resolveTheme } from '../a11y/themeTokens'
 import bourbonDojoCss from '../routes/bourbon-dojo/bourbon-dojo.css?raw'
 import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
-import siteCss from '../style.css?raw'
+import siteCss from '../styles/base.css?raw'
 import tokensCss from '../styles/tokens.css?raw'
 import { StoreBadge } from './StoreBadge'
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import tokensCss from './tokens.css?raw'
-import siteCss from '../style.css?raw'
+import siteCss from './base.css?raw'
 import bourbonDojoCss from '../routes/bourbon-dojo/bourbon-dojo.css?raw'
 import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
 import wizardKittenzCss from '../routes/wizard-kittenz/wizard-kittenz.css?raw'
@@ -75,7 +75,7 @@ describe('tokens.css visually-hidden utility', () => {
 
 describe('stylesheets keep the focus ring', () => {
   it.each([
-    ['style.css', siteCss],
+    ['base.css', siteCss],
     ['bourbon-dojo.css', bourbonDojoCss],
     ['panda-jump.css', pandaJumpCss],
     ['wizard-kittenz.css', wizardKittenzCss],
