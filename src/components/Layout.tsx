@@ -138,10 +138,12 @@ export function Layout({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <a href="#main" className="skip-link">Skip to content</a>
+
       <canvas id="starfield" ref={canvasRef} />
 
       {showNav && (
-        <nav id="nav" ref={navRef} className={navClassName || undefined}>
+        <nav id="nav" aria-label="Primary" ref={navRef} className={navClassName || undefined}>
           <Link to="/" className="nav-logo">
             <img src="/rko-logo.png" alt="RKO" />
           </Link>
@@ -170,7 +172,7 @@ export function Layout({ children }: { children: ReactNode }) {
         </nav>
       )}
 
-      {children}
+      <main id="main" tabIndex={-1}>{children}</main>
     </>
   )
 }

@@ -26,6 +26,37 @@ afterEach(() => {
 })
 
 describe('Layout', () => {
+  describe('landmarks', () => {
+    it('wraps the route content in the main landmark', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+
+      expect(screen.getByRole('main')).toHaveTextContent('content')
+    })
+
+    it('makes main the focusable skip target', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+
+      const main = screen.getByRole('main')
+      expect(main).toHaveAttribute('id', 'main')
+      expect(main).toHaveAttribute('tabindex', '-1')
+    })
+
+    it('renders a skip link to main as the first focusable element', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+
+      const skip = screen.getByRole('link', { name: 'Skip to content' })
+      expect(skip).toHaveAttribute('href', '#main')
+      const focusable = document.querySelectorAll('a, button, [tabindex]:not([tabindex="-1"])')
+      expect(focusable[0]).toBe(skip)
+    })
+
+    it('labels the site navigation', async () => {
+      await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
+
+      expect(screen.getByRole('navigation', { name: 'Primary' })).toBeInTheDocument()
+    })
+  })
+
   it('renders the project nav on the portfolio home', async () => {
     await renderWithRouter(<Layout>content</Layout>, { initialPath: '/' })
 
@@ -33,9 +64,12 @@ describe('Layout', () => {
   })
 
   it.each(['/panda-jump', '/panda-jump/privacy'])(
-    'renders no links to other projects on %s',
+    'renders no links to other projects on %s, but keeps the skip link and main',
     async (path) => {
       await renderWithRouter(<Layout>content</Layout>, { initialPath: path })
+
+      expect(screen.getByRole('link', { name: 'Skip to content' })).toHaveAttribute('href', '#main')
+      expect(screen.getByRole('main')).toHaveTextContent('content')
 
       expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
       expect(screen.queryByRole('link', { name: 'Bourbon Dojo' })).not.toBeInTheDocument()

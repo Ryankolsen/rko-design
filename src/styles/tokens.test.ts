@@ -79,7 +79,13 @@ describe('stylesheets keep the focus ring', () => {
     ['bourbon-dojo.css', bourbonDojoCss],
     ['panda-jump.css', pandaJumpCss],
     ['wizard-kittenz.css', wizardKittenzCss],
-  ])('%s never removes outlines', (_, css) => {
-    expect(css).not.toMatch(/outline:\s*(none|0)\b/)
+  ])('%s never removes outlines from interactive elements', (_, css) => {
+    // main is focused only programmatically, as the skip-link target.
+    const allowed = new Set(['main:focus'])
+    const offenders = [...stripComments(css).matchAll(/([^{}]+)\{([^{}]*)\}/g)]
+      .filter(([, , body]) => /outline:\s*(none|0)\b/.test(body))
+      .map(([, selector]) => selector.trim())
+      .filter((selector) => !allowed.has(selector))
+    expect(offenders).toEqual([])
   })
 })

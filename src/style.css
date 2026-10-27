@@ -21,6 +21,26 @@ body {
   pointer-events: none;
 }
 
+/* SKIP LINK: off-screen until keyboard focus brings it in above the nav. */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  padding: 0.6rem 1.1rem;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transform: translateY(calc(-100% - 1rem));
+}
+
+.skip-link:focus { transform: none; }
+
+/* Focused only as the skip target; it isn't interactive, so no ring. */
+main:focus { outline: none; }
+
 /* NAV */
 #nav {
   position: fixed;
