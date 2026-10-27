@@ -2,6 +2,7 @@ import { cleanup, render, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { contrastRatio, meetsWcag } from '../a11y/contrast'
 import { resolveTheme } from '../a11y/themeTokens'
+import bourbonDojoCss from '../routes/bourbon-dojo/bourbon-dojo.css?raw'
 import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
 import siteCss from '../style.css?raw'
 import tokensCss from '../styles/tokens.css?raw'
@@ -77,6 +78,40 @@ describe('StoreBadge coming soon', () => {
   })
 })
 
+describe('StoreBadge two-line variant', () => {
+  it('names the iOS link by its two visible lines', () => {
+    render(<StoreBadge platform="ios" variant="two-line" url="https://example.com/ios" />)
+
+    const link = screen.getByRole('link', { name: 'Download on the App Store (opens in new tab)' })
+    expect(link).toHaveAttribute('href', 'https://example.com/ios')
+    expect(link).toHaveClass('store-btn', 'ios', 'two-line')
+  })
+
+  it('shows each line as its own visible text', () => {
+    render(<StoreBadge platform="ios" variant="two-line" url="https://example.com/ios" />)
+
+    expect(screen.getByText('Download on the')).toHaveClass('store-btn-sub')
+    expect(screen.getByText('App Store')).toHaveClass('store-btn-main')
+  })
+
+  it('names the Android link by its two visible lines', () => {
+    render(<StoreBadge platform="android" variant="two-line" url="https://example.com/android" />)
+
+    expect(screen.getByRole('link', { name: 'Get it on Google Play (opens in new tab)' })).toHaveAttribute(
+      'href',
+      'https://example.com/android',
+    )
+  })
+
+  it('is plain text when coming soon', () => {
+    render(<StoreBadge platform="android" variant="two-line" comingSoon />)
+
+    expect(screen.queryByRole('link')).not.toBeInTheDocument()
+    expect(screen.getByText('Coming soon to the')).toBeInTheDocument()
+    expect(screen.getByText('Google Play')).toBeInTheDocument()
+  })
+})
+
 /** Declarations of the rule whose selector list is exactly `selector`. */
 function declarations(css: string, selector: string): Record<string, string> {
   const rule = [...css.replace(/\/\*[\s\S]*?\*\//g, '').matchAll(/([^{}]+)\{([^{}]*)\}/g)].find(
@@ -129,5 +164,20 @@ describe('StoreBadge styles', () => {
 
     expect(meetsWcag(contrastRatio(soon.color, soon.background), 'text')).toBe(true)
     expect(meetsWcag(contrastRatio(borderColor(soon), page), 'non-text')).toBe(true)
+  })
+})
+
+describe('StoreBadge two-line styles', () => {
+  it('keeps the 44px minimum height of every badge', () => {
+    const twoLine = declarations(siteCss, '.store-btn.two-line')
+    expect(twoLine['min-height'] ?? declarations(siteCss, '.store-btn')['min-height']).toBe('44px')
+  })
+
+  it('has a border that stands out from the Bourbon Dojo page', () => {
+    const bd = resolveTheme([tokensCss, bourbonDojoCss], '.bd-page')
+    const border = declarations(siteCss, '.store-btn.two-line')['border-color']
+      .replace(/var\((--[\w-]+)\)/g, (_, name: string) => bd[name])
+
+    expect(contrastRatio(border, '#1C0A00')).toBeGreaterThanOrEqual(3)
   })
 })

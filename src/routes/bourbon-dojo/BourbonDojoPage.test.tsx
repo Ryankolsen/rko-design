@@ -1,6 +1,7 @@
 import { cleanup, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../../test-utils'
+import pageSource from './index.tsx?raw'
 import { BourbonDojoPage } from './index'
 
 afterEach(cleanup)
@@ -26,11 +27,24 @@ describe('BourbonDojoPage', () => {
     expect(screen.getAllByText(/follow|feed/i).length).toBeGreaterThan(0)
   })
 
-  it('keeps the App Store link unchanged', async () => {
+  it.each([
+    ['Download on the App Store (opens in new tab)', 'https://apps.apple.com/us/app/bourbon-dojo/id6762319810'],
+    [
+      'Get it on Google Play (opens in new tab)',
+      'https://play.google.com/store/apps/details?id=com.ryankolsen.bourbondojo&hl=en_US',
+    ],
+  ])('links %s safely in a new tab with its original href', async (name, href) => {
     await render()
-    expect(screen.getByRole('link', { name: /download on the app store/i }).getAttribute('href')).toBe(
-      'https://apps.apple.com/us/app/bourbon-dojo/id6762319810',
-    )
+    const link = screen.getByRole('link', { name })
+    expect(link).toHaveAttribute('href', href)
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+  })
+
+  it('uses the shared StoreBadge instead of its own badge markup', () => {
+    expect(pageSource).not.toContain('function AppleButton')
+    expect(pageSource).not.toContain('function GooglePlayButton')
+    expect(pageSource).not.toContain('target="_blank"')
   })
 
   it('links Contact to the RKO Design email', async () => {

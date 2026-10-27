@@ -62,6 +62,6 @@
 
   .card:hover,
   .card:hover .card-img img,
-  .bd-store-btn:hover,
+  .store-btn.two-line:hover,
   .bd-feature-card:hover { transform: none !important; }
 }

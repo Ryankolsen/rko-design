@@ -11,6 +11,14 @@
   --cream-faint:     #8B6A3E;
   --divider:         rgba(212, 135, 10, 0.15);
 
+  /* Semantic tokens for shared components such as the store badge. */
+  --color-bg: var(--bourbon-dark);
+  --color-surface: var(--bourbon-card);
+  --color-text: var(--cream);
+  --color-text-muted: var(--cream-muted);
+  --color-accent: var(--amber);
+  --color-accent-rgb: 212 135 10;
+
   font-family: 'Inter', system-ui, sans-serif;
   background-color: var(--bourbon-dark);
   color: var(--cream);
@@ -108,63 +116,6 @@
   gap: 16px;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.bd-store-btn {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 24px;
-  background: var(--bourbon-card);
-  border: 1px solid rgba(212, 135, 10, 0.35);
-  border-radius: 12px;
-  color: var(--cream);
-  cursor: pointer;
-  transition: background 0.18s, border-color 0.18s, transform 0.12s;
-  text-decoration: none;
-  min-width: 180px;
-}
-
-.bd-store-btn:hover {
-  background: #4A2510;
-  border-color: rgba(212, 135, 10, 0.65);
-  transform: translateY(-2px);
-}
-
-.bd-store-btn:active {
-  transform: translateY(0);
-}
-
-.bd-store-btn--soon {
-  opacity: 0.55;
-  pointer-events: none;
-  cursor: default;
-}
-
-.bd-store-icon {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  color: var(--cream);
-}
-
-.bd-store-btn-text {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-.bd-store-btn-sub {
-  font-size: 0.7rem;
-  color: var(--cream-muted);
-  letter-spacing: 0.04em;
-  line-height: 1.2;
-}
-
-.bd-store-btn-main {
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.3;
 }
 
 .bd-store-note {
@@ -307,8 +258,5 @@
   }
   .bd-wordmark {
     text-align: center;
-  }
-  .bd-store-btn {
-    min-width: 160px;
   }
 }

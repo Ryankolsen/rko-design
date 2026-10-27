@@ -57,7 +57,7 @@ describe('tokens.css reduced motion', () => {
     const [body] = reduced()
     // tokens.css loads first, so these must beat the later page rules.
     expect(body).toMatch(/opacity:\s*1\s*!important/)
-    for (const selector of ['.card:hover', '.bd-store-btn:hover', '.bd-feature-card:hover']) {
+    for (const selector of ['.card:hover', '.store-btn.two-line:hover', '.bd-feature-card:hover']) {
       expect(body).toContain(selector)
     }
     expect(body).toMatch(/transform:\s*none/)
