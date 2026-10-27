@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vitest'
+import indexHtml from '../../index.html?raw'
 import pandaJumpCss from '../routes/panda-jump/panda-jump.css?raw'
 import wizardKittenzCss from '../routes/wizard-kittenz/wizard-kittenz.css?raw'
 import baseCss from '../styles/base.css?raw'
@@ -49,5 +50,11 @@ describe('global h1', () => {
   it('leaves the hero fade-in and glow to the home hero', () => {
     const rule = stripComments(baseCss).match(/(?:^|\})\s*h1\s*\{([^}]*)\}/)![1]
     expect(rule).not.toMatch(/animation|text-shadow|opacity/)
+  })
+})
+
+describe('index.html fonts', () => {
+  it('loads Google Fonts with one stylesheet link', () => {
+    expect(indexHtml.match(/<link[^>]+fonts\.googleapis\.com\/css2[^>]*>/g)).toHaveLength(1)
   })
 })
