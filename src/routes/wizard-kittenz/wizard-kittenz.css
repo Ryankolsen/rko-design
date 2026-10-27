@@ -67,7 +67,7 @@
 }
 
 .wk-credit-heading {
-  font-size: 0.85rem;
+  font-size: var(--text-xs);
   font-weight: normal;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -76,7 +76,7 @@
 }
 
 .wk-credit-text {
-  font-size: 0.9rem;
+  font-size: var(--text-sm);
   color: var(--color-text-muted);
   line-height: 1.6;
   overflow-wrap: anywhere;
@@ -91,6 +91,6 @@
 }
 
 /* A smaller footer whose link underlines on hover. */
-.wk-page .app-footer { font-size: 0.8rem; }
+.wk-page .app-footer { font-size: var(--text-xs); }
 .wk-page .app-footer a { text-decoration: none; }
 .wk-page .app-footer a:hover { text-decoration: underline; }

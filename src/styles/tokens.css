@@ -3,7 +3,7 @@
 :root {
   --bg: #060812;
   --gold: #f0a835;
-  --gold-dim: rgba(240, 168, 53, 0.15);
+  --gold-dim: rgb(var(--color-accent-rgb) / 0.15);
   --cyan: #4db8ff;
   --purple: #9b5de5;
   --text: #e8eaf0;
@@ -24,10 +24,11 @@
   --color-on-accent: var(--bg);
   --color-focus-ring: var(--color-accent);
 
-  /* App landing pages (.app-shell) take their look from these. */
-  --font-body: 'Space Grotesk', sans-serif;
-  --font-heading: 'Cinzel', serif;
-  --shadow-banner: none;
+  /* Channels for translucent tints: rgb(var(--x-rgb) / alpha). */
+  --color-bg-rgb: 6 8 18;
+  --color-ios-rgb: 240 168 53;
+  --color-android-rgb: 77 184 255;
+  --color-purple-rgb: 155 93 229;
 
   /* Project tags: text on a translucent tint of the same hue. */
   --color-tag-text: var(--color-accent);
@@ -35,9 +36,33 @@
   --color-tag-border: rgb(var(--color-accent-rgb) / 0.28);
   /* Lighter than --purple, which was 4.0:1 on its tint. */
   --color-tag-game-text: #b48cf0;
-  --color-tag-game-bg: rgb(155 93 229 / 0.12);
-  --color-tag-game-border: rgb(155 93 229 / 0.28);
+  --color-tag-game-bg: rgb(var(--color-purple-rgb) / 0.12);
+  --color-tag-game-border: rgb(var(--color-purple-rgb) / 0.28);
+
+  /* App landing pages (.app-shell) take their look from these. */
+  --font-body: 'Space Grotesk', sans-serif;
+  --font-heading: 'Cinzel', serif;
+  --shadow-banner: none;
+
+  --text-2xs: 0.7rem;
+  --text-xs: 0.8rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.1rem;
+  --text-xl: 1.2rem;
+
+  --dur-fast: 0.2s;
+  --dur-med: 0.35s;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 100px;
 }
+
+/* Breakpoints, which custom properties can't express in media queries:
+   480px small phones, 680px phones, and the 900px nav collapse
+   (max-width: 899.98px), which must match Layout.tsx's matchMedia. */
 
 /* Keyboard focus only; mouse clicks don't trigger :focus-visible on links and buttons. */
 :focus-visible {

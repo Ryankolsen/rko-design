@@ -1,7 +1,9 @@
 import { cleanup, screen } from '@testing-library/react'
 import { afterEach, describe, expect, it } from 'vitest'
 import { renderWithRouter } from '../../test-utils'
+import { resolveTheme } from '../../a11y/themeTokens'
 import baseCss from '../../styles/base.css?raw'
+import tokensCss from '../../styles/tokens.css?raw'
 import pandaJumpCss from './panda-jump.css?raw'
 import { PandaJumpPage } from './index'
 
@@ -41,7 +43,11 @@ describe('Panda Jump styles', () => {
     const rule = baseCss.match(/\.app-footer a\s*\{([^}]*)\}/)
     expect(rule).not.toBeNull()
     expect(rule![1]).toMatch(/text-decoration:\s*underline/)
-    const footer = baseCss.match(/\.app-footer\s*\{([^}]*)\}/)![1] + rule![1]
+    const tokens = resolveTheme([tokensCss], ':root')
+    const footer = (baseCss.match(/\.app-footer\s*\{([^}]*)\}/)![1] + rule![1]).replace(
+      /var\((--[\w-]+)\)/g,
+      (_, name: string) => tokens[name],
+    )
     const sizes = [...footer.matchAll(/font-size:\s*([\d.]+)rem/g)].map((m) => Number(m[1]))
     expect(sizes.at(-1)).toBeGreaterThanOrEqual(0.875)
   })

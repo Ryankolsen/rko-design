@@ -28,6 +28,15 @@ describe.each(Object.entries(sheets))('%s', (_, css) => {
   it('has no top-level bare section or footer rule', () => {
     expect(stripComments(css)).not.toMatch(/(^|\})\s*(section|footer)\s*\{/)
   })
+
+  it('tints with the accent token instead of raw gold rgba()', () => {
+    expect(css.replace(/\s/g, '')).not.toContain('rgba(240,168,53')
+  })
+
+  it('uses only the documented breakpoints', () => {
+    const widths = [...css.matchAll(/\((?:max|min)-width:\s*([\d.]+)px\)/g)].map((m) => m[1])
+    for (const width of widths) expect(['480', '680', '899.98', '900']).toContain(width)
+  })
 })
 
 describe('global h1', () => {
